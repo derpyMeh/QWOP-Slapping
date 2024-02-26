@@ -17,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (start == true)
         {
-            Debug.Log("Hello World");
+            Debug.Log("Hello worl");
         }
     }
 }
