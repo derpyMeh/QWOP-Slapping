@@ -5,11 +5,11 @@ using UnityEngine;
 public class StartSlap : MonoBehaviour
 {
     public Transform rightHandTarget; // The target transform for the right hand
+    public Transform opponentFace; // The target transform for the opponent's face
     public float slapForce = 10f; // The force of the slap
-    public float slapDistance = 1f; // The distance of the slap
-    
+
     private bool slapping = false; // Flag to indicate if currently slapping
-    
+
     void Update()
     {
         // Check for input to initiate slap
@@ -21,44 +21,30 @@ public class StartSlap : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator SlapCoroutine()
     {
         slapping = true;
-    
-        Vector3 originalPosition = rightHandTarget.localPosition;
-        Quaternion originalRotation = rightHandTarget.localRotation;
-    
-        // Move hand forward
-        for (float t = 0; t < 1f; t += Time.deltaTime / slapDistance)
-        {
-            rightHandTarget.localPosition = Vector3.Lerp(originalPosition, originalPosition + Vector3.forward * slapDistance, t);
-            yield return null;
-        }
-    
+
+        // Calculate direction towards opponent's face
+        Vector3 slapDirection = (opponentFace.position - rightHandTarget.position).normalized;
+        
+        // Calculate rotation to face the opponent
+        Quaternion targetRotation = Quaternion.LookRotation(-slapDirection, Vector3.up);
+
+        // Apply rotation to the hand
+        rightHandTarget.rotation = targetRotation;
+        
         // Apply slap force
-        RaycastHit hit;
-        if (Physics.Raycast(rightHandTarget.position, rightHandTarget.forward, out hit, slapDistance))
+        Rigidbody handRb = rightHandTarget.GetComponent<Rigidbody>();
+        if (handRb != null)
         {
-            if (hit.transform.CompareTag("Opponent"))
-            {
-                Rigidbody opponentRb = hit.transform.GetComponent<Rigidbody>();
-                if (opponentRb != null)
-                {
-                    opponentRb.AddForceAtPosition(rightHandTarget.forward * slapForce, hit.point, ForceMode.Impulse);
-                }
-            }
+            handRb.AddForce(slapDirection * slapForce, ForceMode.Impulse);
         }
-    
-        // Return hand to original position
-        for (float t = 0; t < 1f; t += Time.deltaTime / slapDistance)
-        {
-            rightHandTarget.localPosition = Vector3.Lerp(originalPosition + Vector3.forward * slapDistance, originalPosition, t);
-            yield return null;
-        }
-    
+
+        // Wait for the slap to finish (you can adjust the duration as needed)
+        yield return new WaitForSeconds(0.5f);
+
         slapping = false;
-        rightHandTarget.localPosition = originalPosition;
-        rightHandTarget.localRotation = originalRotation;
     }
 }
