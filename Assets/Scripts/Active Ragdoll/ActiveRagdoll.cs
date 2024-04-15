@@ -9,7 +9,7 @@ using UnityEngine;
 namespace ActiveRagdoll {
     // Author: Sergio Abreu García | https://sergioabreu.me
 
-    [RequireComponent(typeof(InputModule))]
+    // [RequireComponent(typeof(InputModule))]
     public class ActiveRagdoll : MonoBehaviour {
         [Header("--- GENERAL ---")]
         [SerializeField] private int _solverIterations = 12;
