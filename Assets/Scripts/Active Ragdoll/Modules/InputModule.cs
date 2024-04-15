@@ -38,12 +38,12 @@ namespace ActiveRagdoll {
         private bool _isOnFloor = true;
         public bool IsOnFloor { get { return _isOnFloor; } }
 
-        Rigidbody _rightFoot, _leftFoot;
+        public Rigidbody _rightFoot, _leftFoot;
 
 
         void Start() {
-            _rightFoot = _activeRagdoll.GetPhysicalBone(HumanBodyBones.RightFoot).GetComponent<Rigidbody>();
-            _leftFoot = _activeRagdoll.GetPhysicalBone(HumanBodyBones.LeftFoot).GetComponent<Rigidbody>();
+            /*_rightFoot = _activeRagdoll.GetPhysicalBone(HumanBodyBones.RightFoot).GetComponent<Rigidbody>();
+            _leftFoot = _activeRagdoll.GetPhysicalBone(HumanBodyBones.LeftFoot).GetComponent<Rigidbody>();*/
         }
 
         void Update() {
