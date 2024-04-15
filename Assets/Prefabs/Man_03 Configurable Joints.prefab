@@ -5267,8 +5267,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8334395802308901857}
   - component: {fileID: 8410272225471634094}
-  - component: {fileID: 7353497433178177521}
-  - component: {fileID: 5915946813097678712}
   m_Layer: 0
   m_Name: Man_03 Configurable Joints
   m_TagString: Untagged
@@ -5330,41 +5328,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7353497433178177521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170076429778380847}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4a6ba61799f3446aeaa6a13d8bbec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activeRagdoll: {fileID: 5915946813097678712}
-  floorDetectionDistance: 0.3
-  maxFloorSlope: 60
---- !u!114 &5915946813097678712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170076429778380847}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb2fc972491d3447a8a29e738e22e8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _solverIterations: 12
-  _velSolverIterations: 4
-  _maxAngularVelocity: 50
-  _animatedTorso: {fileID: 0}
-  _physicalTorso: {fileID: 0}
-  _bodyParts: []
-  _animatedAnimator: {fileID: 0}
-  _physicalAnimator: {fileID: 0}
 --- !u!1 &9173561537066663534
 GameObject:
   m_ObjectHideFlags: 0
