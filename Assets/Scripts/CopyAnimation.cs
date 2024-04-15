@@ -5,7 +5,6 @@ using UnityEngine;
 public class CopyAnimation : MonoBehaviour
 {
     public Transform targetLimb;
-    public bool mirror;
     ConfigurableJoint cjoint;
     Quaternion startRotation;
 
