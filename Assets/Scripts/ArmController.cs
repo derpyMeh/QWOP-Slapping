@@ -29,12 +29,12 @@ public class ArmController : MonoBehaviour
 
         if (mouseXvalue != 0)
         {
-            print("Mouse X movement: " + mouseXvalue);
+            //print("Mouse X movement: " + mouseXvalue);
             targetHorizontal += mouseXvalue;
         }
         if (mouseYvalue != 0)
         {
-            print("Mouse Y movement: " + mouseYvalue);
+            //print("Mouse Y movement: " + mouseYvalue);
             targetVertical += mouseYvalue;
         }
 
