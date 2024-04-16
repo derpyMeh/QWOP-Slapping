@@ -6391,6 +6391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slapper
       objectReference: {fileID: 0}
+    - target: {fileID: 2950348506107750178, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: m_TagString
+      value: SlapHand
+      objectReference: {fileID: 0}
     - target: {fileID: 8240241993401714326, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5508137
