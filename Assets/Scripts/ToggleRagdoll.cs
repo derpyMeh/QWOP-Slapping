@@ -8,17 +8,23 @@ public class ToggleRagdoll : MonoBehaviour
     Rigidbody rb;
     float forceAmount = 1000f;
 
+    public Healthbar healthbar;
+    public float maxHealth;
+    float currentHealth;
+
     public ConfigurableJoint[] joints;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+
+        currentHealth = maxHealth;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 2)
+        if (collision.gameObject.tag == "SlapHand" && collision.relativeVelocity.magnitude > 2)
         {
             audioSource.Play();
 
@@ -34,7 +40,18 @@ public class ToggleRagdoll : MonoBehaviour
             }
 
             Debug.Log(collision.GetContact(0).normal);
+
+            float score = collision.relativeVelocity.magnitude * forceAmount;
+            Debug.Log($"Score: {score}");
+            TakeDamage(score);
+
             rb.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        healthbar.UpdateHealthbar(currentHealth / maxHealth);
     }
 }
