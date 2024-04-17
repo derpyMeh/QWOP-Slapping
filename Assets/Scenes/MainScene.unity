@@ -2618,7 +2618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recCam: {fileID: 2034007143}
-  delayBetweenFrames: 0
+  delayBetweenFrames: 0.01
   quadRenderer: {fileID: 942491999}
 --- !u!4 &613117396
 Transform:
@@ -4005,12 +4005,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887971330}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.26, z: 0}
-  m_LocalScale: {x: 0.11459709, y: 3.1083393, z: 0.11459709}
+  m_LocalRotation: {x: 0.09936634, y: -0.7000903, z: -0.09936637, w: 0.7000903}
+  m_LocalPosition: {x: 0, y: 1.8592683, z: 0.74789464}
+  m_LocalScale: {x: 0.06543542, y: 1.7748755, z: 0.04142794}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 942492002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &940031999
 PrefabInstance:
@@ -4253,9 +4253,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.09936634, y: 0.7000903, z: 0.09936637, w: 0.7000903}
   m_LocalPosition: {x: -5.0684023, y: 4.6748247, z: 2.3443673}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.7661781, y: 1.7513, z: 1.7513}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 887971334}
+  - {fileID: 1896225507}
   m_Father: {fileID: 613117396}
   m_LocalEulerAnglesHint: {x: -16.156, y: 90, z: 0}
 --- !u!1001 &950232287
@@ -8346,12 +8348,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896225503}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.2853582, w: 0.958421}
-  m_LocalPosition: {x: -0.144, y: 4.972, z: 0}
-  m_LocalScale: {x: 0.11459709, y: 0.2750173, z: 0.11459709}
+  m_LocalRotation: {x: 0.29501125, y: -0.64262617, z: -0.29501128, w: 0.64262617}
+  m_LocalPosition: {x: 0, y: 0.07883524, z: 0.14649151}
+  m_LocalScale: {x: 0.065435424, y: 0.15703605, z: 0.04142794}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 942492002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -33.161}
 --- !u!1 &1923234819
 GameObject:
@@ -9296,5 +9298,3 @@ SceneRoots:
   - {fileID: 697246292}
   - {fileID: 565631215}
   - {fileID: 613117396}
-  - {fileID: 887971334}
-  - {fileID: 1896225507}
