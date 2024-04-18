@@ -16,9 +16,13 @@ public class ToggleRagdoll : MonoBehaviour
 
     public ConfigurableJoint[] joints;
     public Rigidbody[] rigidbodies;
+    public GameObject[] limbs;
+    private Vector3[] resetPositions;
+    private Quaternion[] resetRotations;
 
     private Vector3 ResetPosition;
     private Quaternion ResetRotation;
+
     public GameObject pelvis;
     ConfigurableJoint pelvisJoint;
 
@@ -39,6 +43,15 @@ public class ToggleRagdoll : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        resetPositions = new Vector3[limbs.Length];
+        resetRotations = new Quaternion[limbs.Length];
+
+        for (int i = 0; i < limbs.Length; i++)
+        {
+            resetPositions[i] = limbs[i].transform.position;
+            resetRotations[i] = limbs[i].transform.rotation;
+        }
+        
         ResetPosition = SpawnPoint.transform.position + new Vector3(0, 0.1f, 0);
         ResetRotation = SpawnPoint.transform.rotation;
     }
@@ -98,6 +111,12 @@ public class ToggleRagdoll : MonoBehaviour
         JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
         pelvisJointYZDrive.positionSpring = 1500f;
         pelvisJoint.angularYZDrive = pelvisJointYZDrive;
+
+        for (int i = 0; i < limbs.Length; i++)
+        {
+            limbs[i].transform.position = resetPositions[i];
+            limbs[i].transform.rotation = resetRotations[i];
+        }
 
         pelvis.transform.position = ResetPosition;
         pelvis.transform.rotation = ResetRotation;
