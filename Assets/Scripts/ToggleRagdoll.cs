@@ -8,7 +8,7 @@ public class ToggleRagdoll : MonoBehaviour
     Rigidbody headRB;
     
     float forceAmount = 1000f;
-    float scoreMultiplier = 1.0f;
+    float scoreMultiplier = 5.0f;
 
     public Healthbar healthbar;
     public float maxHealth;
@@ -19,19 +19,27 @@ public class ToggleRagdoll : MonoBehaviour
 
     private Vector3 ResetPosition;
     private Quaternion ResetRotation;
+    public GameObject pelvis;
+    ConfigurableJoint pelvisJoint;
+
     public GameObject slappedParent;
+    public GameObject slapperParent;
 
     [SerializeField]
     private GameObject SpawnPoint;
+    
+    [SerializeField] private GameObject OpponentSlapper;
+    [SerializeField] private GameObject OpponentSlapped;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         headRB = GetComponent<Rigidbody>();
+        pelvisJoint = pelvis.GetComponent<ConfigurableJoint>();
 
         currentHealth = maxHealth;
 
-        ResetPosition = SpawnPoint.transform.position;
+        ResetPosition = SpawnPoint.transform.position + new Vector3(0, 0.1f, 0);
         ResetRotation = SpawnPoint.transform.rotation;
     }
 
@@ -87,10 +95,23 @@ public class ToggleRagdoll : MonoBehaviour
             jointYZDrive.positionSpring = 500f;
             joint.angularYZDrive = jointYZDrive;
         }
+        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
+        pelvisJointYZDrive.positionSpring = 1500f;
+        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
 
-        slappedParent.transform.position = ResetPosition;
-        slappedParent.transform.rotation = ResetRotation;
-        // rigidBody.velocity = Vector3.zero;
-        // rigidBody.angularVelocity = Vector3.zero;
+        pelvis.transform.position = ResetPosition;
+        pelvis.transform.rotation = ResetRotation;
+
+        foreach (var rigidbody in rigidbodies)
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+        }
+
+        OpponentSlapper.SetActive(false);
+        OpponentSlapped.SetActive(true);
+
+        slapperParent.SetActive(true);
+        slappedParent.SetActive(false);
     }
 }
