@@ -7,7 +7,7 @@ public class ToggleRagdoll : MonoBehaviour
     AudioSource audioSource;
     Rigidbody headRB;
     
-    float forceAmount = 1000f;
+    float forceAmount = 500f;
     float scoreMultiplier = 5.0f;
 
     public Healthbar healthbar;
@@ -20,20 +20,17 @@ public class ToggleRagdoll : MonoBehaviour
     private Vector3[] resetPositions;
     private Quaternion[] resetRotations;
 
-    private Vector3 ResetPosition;
-    private Quaternion ResetRotation;
-
     public GameObject pelvis;
     ConfigurableJoint pelvisJoint;
 
     public GameObject slappedParent;
     public GameObject slapperParent;
-
-    [SerializeField]
-    private GameObject SpawnPoint;
     
     [SerializeField] private GameObject OpponentSlapper;
     [SerializeField] private GameObject OpponentSlapped;
+    public GameObject[] opponentLimbs;
+    private Vector3[] opponentResetPositions;
+    private Quaternion[] opponentResetRotations;
 
     void Start()
     {
@@ -51,9 +48,15 @@ public class ToggleRagdoll : MonoBehaviour
             resetPositions[i] = limbs[i].transform.position;
             resetRotations[i] = limbs[i].transform.rotation;
         }
-        
-        ResetPosition = SpawnPoint.transform.position + new Vector3(0, 0.1f, 0);
-        ResetRotation = SpawnPoint.transform.rotation;
+
+        opponentResetPositions = new Vector3[opponentLimbs.Length];
+        opponentResetRotations = new Quaternion[opponentLimbs.Length];
+
+        for (int i = 0; i < opponentLimbs.Length; i++)
+        {
+            opponentResetPositions[i] = opponentLimbs[i].transform.position;
+            opponentResetRotations[i] = opponentLimbs[i].transform.rotation;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -118,8 +121,11 @@ public class ToggleRagdoll : MonoBehaviour
             limbs[i].transform.rotation = resetRotations[i];
         }
 
-        pelvis.transform.position = ResetPosition;
-        pelvis.transform.rotation = ResetRotation;
+        for (int i = 0; i < opponentLimbs.Length; i++)
+        {
+            opponentLimbs[i].transform.position = opponentResetPositions[i];
+            opponentLimbs[i].transform.rotation = opponentResetRotations[i];
+        }
 
         foreach (var rigidbody in rigidbodies)
         {
