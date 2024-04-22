@@ -5,8 +5,14 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     private Transform camTransform;
+
     public GameObject lookTargetP1;
     public GameObject lookTargetP2;
+    public GameObject lookTargetDefaultP1;
+    public GameObject lookTargetDefaultP2;
+
+    [SerializeField] ToggleRagdoll toggleRagdollScriptP1;
+    [SerializeField] ToggleRagdoll toggleRagdollScriptP2;
 
     public float shakeAmount = 0.3f;
     public float shakeSpeed = 0.3f;
@@ -34,13 +40,30 @@ public class CameraShake : MonoBehaviour
         currentPos = Vector3.Lerp(currentPos, targetPos, Time.deltaTime * shakeSpeed);
         camTransform.localPosition = currentPos;
         
-        if (lookTargetP1.activeInHierarchy)
+        if (toggleRagdollScriptP1.isSlapped) 
         {
-            camTransform.LookAt(lookTargetP1.transform);
+            if (lookTargetP1.activeInHierarchy)
+            {
+                camTransform.LookAt(lookTargetP1.transform);
+            }
         } 
+        else if (toggleRagdollScriptP2.isSlapped)
+        {
+            if (lookTargetP2.activeInHierarchy)
+            {
+                camTransform.LookAt(lookTargetP2.transform);
+            }
+        }
         else
         {
-            camTransform.LookAt(lookTargetP2.transform);
+            if (lookTargetDefaultP1.activeInHierarchy)
+            {
+                camTransform.LookAt(lookTargetDefaultP1.transform);
+            }
+            else
+            {
+                camTransform.LookAt(lookTargetDefaultP2.transform);
+            }
         }
     }
 }

@@ -2269,6 +2269,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3111521440195809795, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
   m_PrefabInstance: {fileID: 199246471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &563076449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+  m_PrefabInstance: {fileID: 199246471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563076446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca1d17207ed0004d835581de6e6d71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &591004308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5226759820217286931, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
@@ -2369,6 +2380,10 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 195982835}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: armController
+      value: 
+      objectReference: {fileID: 563076449}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: slappedParent
       value: 
@@ -2875,13 +2890,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832329368}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7636928, z: -0, w: 0.6455799}
-  m_LocalPosition: {x: -1.314, y: 1.139, z: 0.049}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -2.123, y: 1.556, z: -0.361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -99.582, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &832329372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2940,6 +2955,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTargetP1: {fileID: 1602813522}
   lookTargetP2: {fileID: 942567315}
+  lookTargetDefaultP1: {fileID: 380419754}
+  lookTargetDefaultP2: {fileID: 712038871}
+  toggleRagdollScriptP1: {fileID: 1602813530}
+  toggleRagdollScriptP2: {fileID: 942567323}
   shakeAmount: 0.3
   shakeSpeed: 0.3
 --- !u!1 &853030150 stripped
@@ -2977,6 +2996,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4496253097905188663, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
   m_PrefabInstance: {fileID: 1041137983202672297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &942567323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+  m_PrefabInstance: {fileID: 1041137983202672297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942567315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd564863d5add0469667d19c7c3ef61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &958075916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7923271419919773587, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
@@ -5187,6 +5217,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7449824404073040431, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
   m_PrefabInstance: {fileID: 621443020}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1602813530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+  m_PrefabInstance: {fileID: 621443020}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602813522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd564863d5add0469667d19c7c3ef61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1606557341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6004416479599962922, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
@@ -7223,6 +7264,10 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1644448128}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: armController
+      value: 
+      objectReference: {fileID: 427434026}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: slappedParent
       value: 

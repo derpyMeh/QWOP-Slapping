@@ -8,7 +8,7 @@ public class ToggleRagdoll : MonoBehaviour
     Rigidbody headRB;
     
     float forceAmount = 500f;
-    ArmController armController;
+    [SerializeField] ArmController armController;
     float scoreMultiplier = 0;
 
     public Healthbar healthbar;
@@ -26,6 +26,8 @@ public class ToggleRagdoll : MonoBehaviour
 
     public GameObject slappedParent;
     public GameObject slapperParent;
+
+    public bool isSlapped = false;
     
     [SerializeField] private GameObject OpponentSlapper;
     [SerializeField] private GameObject OpponentSlapped;
@@ -64,6 +66,7 @@ public class ToggleRagdoll : MonoBehaviour
     {
         if (collision.gameObject.tag == "SlapHand" && collision.relativeVelocity.magnitude > 2)
         {
+            isSlapped = true;
             audioSource.Play();
 
             foreach (var joint in joints)
@@ -101,6 +104,8 @@ public class ToggleRagdoll : MonoBehaviour
         Debug.Log("Start");
         yield return new WaitForSeconds(waitTime);
         Debug.Log("End");
+
+        isSlapped = false;
 
         foreach (var joint in joints)
         {
