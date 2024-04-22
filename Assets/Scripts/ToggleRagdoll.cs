@@ -120,6 +120,8 @@ public class ToggleRagdoll : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Debug.Log("End");
 
+        armController.ResetTargetRotation();
+
         if (currentHealth <= 0)
         {
             Defeated();

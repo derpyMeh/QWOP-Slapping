@@ -30,7 +30,6 @@ public class ArmController : MonoBehaviour
     {
         cjoint = GetComponent<ConfigurableJoint>();
         startRotation = transform.rotation;
-        QTESlide.value = 100;
     }
 
     // Update is called once per frame
@@ -99,6 +98,13 @@ public class ArmController : MonoBehaviour
         currentYRotation = Mathf.Clamp(yRot, minY, maxY);
         currentZRotation = Mathf.Clamp(zRot, minZ, maxZ);
         target.transform.localRotation = Quaternion.Euler(xRot, yRot, zRot);
+    }
+
+    public void ResetTargetRotation()
+    {
+        currentXRotation = startRotation.x;
+        currentYRotation = startRotation.y;
+        currentZRotation = startRotation.z;
     }
 
     void ColorChange()
