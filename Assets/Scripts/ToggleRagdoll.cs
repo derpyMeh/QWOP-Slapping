@@ -9,6 +9,7 @@ public class ToggleRagdoll : MonoBehaviour
     Rigidbody headRB;
     
     float forceAmount = 500f;
+    float springStart = 500f;
     [SerializeField] ArmController armController;
     float scoreMultiplier = 0;
 
@@ -85,11 +86,13 @@ public class ToggleRagdoll : MonoBehaviour
             Debug.Log(collision.GetContact(0).normal);
             scoreMultiplier = armController.scoreMultiplier;
             float score = collision.relativeVelocity.magnitude * scoreMultiplier;
+            score = Mathf.Round(score);
             Debug.Log($"Score: {score}");
             TakeDamage(score);
+            armController.scoreText.text = score.ToString();
 
             headRB.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
-            Debug.Log($"Score: {collision.relativeVelocity.magnitude * forceAmount}");
+            Debug.Log($"Force: {collision.relativeVelocity.magnitude * forceAmount}");
 
             StartCoroutine(Respawn(3));
         }
@@ -116,11 +119,12 @@ public class ToggleRagdoll : MonoBehaviour
 
     private IEnumerator Respawn(float waitTime)
     {
-        Debug.Log("Start");
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("End");
 
         armController.ResetTargetRotation();
+        armController.scoreMultiplier = 0;
+        armController.scoreText.text = "";
+        armController.sliderText.text = armController.scoreMultiplier.ToString();
 
         if (currentHealth <= 0)
         {
@@ -133,15 +137,15 @@ public class ToggleRagdoll : MonoBehaviour
             foreach (var joint in joints)
             {
                 JointDrive jointXDrive = joint.angularXDrive;
-                jointXDrive.positionSpring = 500f;
+                jointXDrive.positionSpring = springStart - (1 / currentHealth * 1000);
                 joint.angularXDrive = jointXDrive;
 
                 JointDrive jointYZDrive = joint.angularYZDrive;
-                jointYZDrive.positionSpring = 500f;
+                jointYZDrive.positionSpring = springStart - (1/currentHealth * 1000);
                 joint.angularYZDrive = jointYZDrive;
             }
             JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
-            pelvisJointYZDrive.positionSpring = 1500f;
+            pelvisJointYZDrive.positionSpring = 1500f - (1 / currentHealth * 1000);
             pelvisJoint.angularYZDrive = pelvisJointYZDrive;
 
             for (int i = 0; i < limbs.Length; i++)

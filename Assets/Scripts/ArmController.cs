@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class ArmController : MonoBehaviour
 {
@@ -9,7 +11,9 @@ public class ArmController : MonoBehaviour
 
     public Slider QTESlide;
     public Image fillColor;
-    public float scoreMultiplier;
+    public TMP_Text sliderText;
+    public TMP_Text scoreText;
+    public float scoreMultiplier = 0;
     private bool hasExecuted = false;
 
     float currentXRotation;
@@ -62,15 +66,21 @@ public class ArmController : MonoBehaviour
             {
                 case 0:
                     scoreMultiplier = 1;
+                    Debug.Log($"Score Multiplier: {scoreMultiplier}");
+                    sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
                     break;
                 case 1:
                     scoreMultiplier = 2;
+                    Debug.Log($"Score Multiplier: {scoreMultiplier}");
+                    sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
                     break;
 
                 case 2:
                     scoreMultiplier = 3;
+                    Debug.Log($"Score Multiplier: {scoreMultiplier}");
+                    sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
                     break;
                 default:
@@ -80,9 +90,10 @@ public class ArmController : MonoBehaviour
 
 
         }
-        if ( QTESlide.value < 10)
+        if ( QTESlide.value < 10 && hasExecuted)
         {
             hasExecuted = false;
+            Debug.Log("Score Slider Reset");
         }
 
         SetCurrentRotation(currentXRotation, currentYRotation, currentZRotation);
