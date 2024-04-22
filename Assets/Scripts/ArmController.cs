@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +9,7 @@ public class ArmController : MonoBehaviour
 
     public Slider QTESlide;
     public Image fillColor;
+    public float scoreMultiplier;
 
     float currentXRotation;
     float currentYRotation;
@@ -52,9 +50,32 @@ public class ArmController : MonoBehaviour
             // target.transform.Rotate(0, mouseYvalue, 0, Space.Self);
         }
 
+
         QTESlide.value += mouseXvalue;
 
         ColorChange();
+
+
+        if (QTESlide.value >= 180)
+        {
+            switch (scoreMultiplier)
+            {
+                case 0:
+                    scoreMultiplier = 1;
+                    break;
+                case 1:
+                    scoreMultiplier = 2;
+                    break;
+
+                case 2:
+                    scoreMultiplier = 3;
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
 
         SetCurrentRotation(currentXRotation, currentYRotation, currentZRotation);
 

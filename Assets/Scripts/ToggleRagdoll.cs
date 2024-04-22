@@ -8,7 +8,8 @@ public class ToggleRagdoll : MonoBehaviour
     Rigidbody headRB;
     
     float forceAmount = 500f;
-    float scoreMultiplier = 5.0f;
+    ArmController armController;
+    float scoreMultiplier = 0;
 
     public Healthbar healthbar;
     public float maxHealth;
@@ -77,7 +78,7 @@ public class ToggleRagdoll : MonoBehaviour
             }
 
             Debug.Log(collision.GetContact(0).normal);
-
+            scoreMultiplier = armController.scoreMultiplier;
             float score = collision.relativeVelocity.magnitude * scoreMultiplier;
             Debug.Log($"Score: {score}");
             TakeDamage(score);
