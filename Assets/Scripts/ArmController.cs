@@ -14,13 +14,15 @@ public class ArmController : MonoBehaviour
     float currentXRotation;
     float currentYRotation;
     float currentZRotation;
+    
+    public float mouseXvalue;
 
     Transform localTransform;
 
     float speed = 350.0f;
 
-    public float maxY = 90f;
-    public float minY = -90f;
+    public float maxY = 10f;
+    public float minY = -10f;
     public float maxZ = 120f;
     public float minZ = -90f;
 
@@ -34,7 +36,7 @@ public class ArmController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseXvalue = Input.GetAxis("Mouse X") * Time.deltaTime * speed;
+        mouseXvalue = Input.GetAxis("Mouse X") * Time.deltaTime * speed;
         float mouseYvalue = Input.GetAxis("Mouse Y") * Time.deltaTime * speed;
 
         if (mouseXvalue != 0)
