@@ -10,6 +10,7 @@ public class ArmController : MonoBehaviour
     public Slider QTESlide;
     public Image fillColor;
     public float scoreMultiplier;
+    private bool hasExecuted = false;
 
     float currentXRotation;
     float currentYRotation;
@@ -58,25 +59,33 @@ public class ArmController : MonoBehaviour
         ColorChange();
 
 
-        if (QTESlide.value >= 180)
+        if (QTESlide.value >= 180 && !hasExecuted)
         {
             switch (scoreMultiplier)
             {
                 case 0:
                     scoreMultiplier = 1;
+                    hasExecuted = true;
                     break;
                 case 1:
                     scoreMultiplier = 2;
+                    hasExecuted = true;
                     break;
 
                 case 2:
                     scoreMultiplier = 3;
+                    hasExecuted = true;
                     break;
                 default:
                     break;
 
             }
 
+
+        }
+        if ( QTESlide.value < 10)
+        {
+            hasExecuted = false;
         }
 
         SetCurrentRotation(currentXRotation, currentYRotation, currentZRotation);
