@@ -106,6 +106,7 @@ public class ToggleRagdoll : MonoBehaviour
         Debug.Log("End");
 
         isSlapped = false;
+        armController.QTESlide.value = 100;
 
         foreach (var joint in joints)
         {

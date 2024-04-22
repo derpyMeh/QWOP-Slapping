@@ -18,8 +18,6 @@ public class ArmController : MonoBehaviour
     
     public float mouseXvalue;
 
-    Transform localTransform;
-
     float speed = 350.0f;
 
     public float maxY = 10f;
@@ -32,6 +30,7 @@ public class ArmController : MonoBehaviour
     {
         cjoint = GetComponent<ConfigurableJoint>();
         startRotation = transform.rotation;
+        QTESlide.value = 100;
     }
 
     // Update is called once per frame
@@ -44,22 +43,21 @@ public class ArmController : MonoBehaviour
         {
             //print("Mouse X movement: " + mouseXvalue);
             currentZRotation += mouseXvalue;
-            // target.transform.Rotate(0, 0, mouseXvalue, Space.Self);
         }
         if (mouseYvalue != 0)
         {
             //print("Mouse Y movement: " + mouseYvalue);
             currentYRotation += mouseYvalue;
-            // target.transform.Rotate(0, mouseYvalue, 0, Space.Self);
         }
 
 
-        QTESlide.value += mouseXvalue;
+        QTESlide.value = currentZRotation;
+        // QTESlide.value += mouseXvalue;
 
         ColorChange();
 
 
-        if (QTESlide.value >= 180 && !hasExecuted)
+        if (QTESlide.value >= 100 && !hasExecuted)
         {
             switch (scoreMultiplier)
             {
@@ -105,15 +103,15 @@ public class ArmController : MonoBehaviour
 
     void ColorChange()
     {
-        if (QTESlide.value <= 100)
+        if (QTESlide.value <= 10)
         {
             fillColor.color = Color.red;
         }
-        if (QTESlide.value >= 100)
+        if (QTESlide.value >= 10)
         {
             fillColor.color = Color.yellow;
         }
-        if (QTESlide.value >= 180)
+        if (QTESlide.value >= 100)
         {
             fillColor.color = Color.green;
         }

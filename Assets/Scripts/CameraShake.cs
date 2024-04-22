@@ -24,6 +24,9 @@ public class CameraShake : MonoBehaviour
     void Start()
     {
         camTransform = GetComponent<Transform>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+
         originalPos = camTransform.localPosition;
         currentPos = originalPos;
         targetPos = camTransform.localPosition;
