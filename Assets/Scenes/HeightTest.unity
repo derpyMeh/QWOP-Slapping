@@ -722,14 +722,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215780021}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3995393c03006448607fe1f1b2c4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slapHandRigidbody: {fileID: 215780023}
   targetRB: {fileID: 1537969591}
+  armControllerScript: {fileID: 427434026}
   m_Speed: 8
+  multiplier: 50
 --- !u!153 &215780025
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1864,6 +1866,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3111521440195809795, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
   m_PrefabInstance: {fileID: 1769712460408555939}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &427434026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+  m_PrefabInstance: {fileID: 1769712460408555939}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427434023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca1d17207ed0004d835581de6e6d71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &436446165 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 245338657366802426, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
@@ -8033,6 +8046,18 @@ PrefabInstance:
     - target: {fileID: 671256350159169002, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_Name
       value: SlapperP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 857103271820281496, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: m_AngularYLimit.limit
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 857103271820281496, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: m_LowAngularXLimit.limit
+      value: -40.684357
+      objectReference: {fileID: 0}
+    - target: {fileID: 857103271820281496, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: m_HighAngularXLimit.limit
+      value: 127.90751
       objectReference: {fileID: 0}
     - target: {fileID: 1107355537198465005, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_IsActive

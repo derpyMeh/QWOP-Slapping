@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6c53c3d7-5f50-42a2-9441-e70b44d0c946" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HeightTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HeightTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ArmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ArmController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SlapAimAssist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SlapAimAssist.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +46,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Mathias\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Mathias\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Mathias\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\MatDe\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\MatDe\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\MatDe\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -102,6 +104,7 @@
       <workItem from="1713168786974" duration="5126000" />
       <workItem from="1713356077584" duration="2074000" />
       <workItem from="1713765893902" duration="1575000" />
+      <workItem from="1713773937640" duration="6430000" />
     </task>
     <servers />
   </component>
