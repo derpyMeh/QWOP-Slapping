@@ -1,13 +1,18 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArmController : MonoBehaviour
 {
     public Transform target;
     ConfigurableJoint cjoint;
     Quaternion startRotation;
-    
+
+    public Slider QTESlide;
+    public Image fillColor;
+
     float currentXRotation;
     float currentYRotation;
     float currentZRotation;
@@ -47,6 +52,10 @@ public class ArmController : MonoBehaviour
             // target.transform.Rotate(0, mouseYvalue, 0, Space.Self);
         }
 
+        QTESlide.value += mouseXvalue;
+
+        ColorChange();
+
         SetCurrentRotation(currentXRotation, currentYRotation, currentZRotation);
 
         // target.transform.Rotate(0, mouseYvalue, mouseXvalue, Space.Self);
@@ -60,5 +69,21 @@ public class ArmController : MonoBehaviour
         currentYRotation = Mathf.Clamp(yRot, minY, maxY);
         currentZRotation = Mathf.Clamp(zRot, minZ, maxZ);
         target.transform.localRotation = Quaternion.Euler(xRot, yRot, zRot);
+    }
+
+    void ColorChange()
+    {
+        if (QTESlide.value <= 100)
+        {
+            fillColor.color = Color.red;
+        }
+        if (QTESlide.value >= 100)
+        {
+            fillColor.color = Color.yellow;
+        }
+        if (QTESlide.value >= 180)
+        {
+            fillColor.color = Color.green;
+        }
     }
 }

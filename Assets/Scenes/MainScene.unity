@@ -1926,7 +1926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &449986864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8732,7 +8732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1848698404}
   - component: {fileID: 1848698406}
-  - component: {fileID: 1848698405}
+  - component: {fileID: 1848698407}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -8761,23 +8761,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 108}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1848698405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848698403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ecfc6248060144cb95f9bcb0a4a94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goalTargetsHit: 3
-  targetsHit: 0
-  powersMove: 0
-  QTESlide: {fileID: 1848698406}
-  fillColor: {fileID: 1800207648}
 --- !u!114 &1848698406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8829,6 +8812,25 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1848698407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848698403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca1d17207ed0004d835581de6e6d71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  QTESlide: {fileID: 1848698406}
+  fillColor: {fileID: 1800207648}
+  maxY: 90
+  minY: -90
+  maxZ: 120
+  minZ: -90
 --- !u!1 &1850017718
 GameObject:
   m_ObjectHideFlags: 0
