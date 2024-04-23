@@ -17,6 +17,8 @@ public class SlapAimAssist : MonoBehaviour
     private float distanceTHISFrame;
     [SerializeField] private float multiplier;
 
+    public bool aimAssistEnabled;
+
     void Start()
     {
         //Fetch the Rigidbody from the GameObject with this script attached
@@ -48,7 +50,7 @@ public class SlapAimAssist : MonoBehaviour
                 
         //Debug.Log("XXX: " + armControllerScript.mouseXvalue);
                 
-        if (distanceTHISFrame < distanceLASTFrame && (armControllerScript.mouseXvalue > 0.015))
+        if (distanceTHISFrame < distanceLASTFrame && (armControllerScript.mouseXvalue > 0.015) && aimAssistEnabled)
         {
             slapHandRigidbody.AddForce((targetRB.transform.position - slapHandRigidbody.transform.position).normalized * multiplier);
             /*if (armControllerScript.mouseXvalue >)
