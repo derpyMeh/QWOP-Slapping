@@ -724,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 7084284700605220889, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 725a252c403a2e140b08d480ba04b41b, type: 2}
+      objectReference: {fileID: 9100000, guid: d99d020398ef207408e941971c0ed95b, type: 2}
     - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: QTESlide
       value: 
@@ -850,6 +850,7 @@ MonoBehaviour:
   armControllerScript: {fileID: 427434026}
   m_Speed: 8
   multiplier: 50
+  aimAssistEnabled: 0
 --- !u!153 &215780025
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1072,7 +1073,7 @@ Transform:
   m_GameObject: {fileID: 236627598}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.637, y: 0.372, z: -0.78}
+  m_LocalPosition: {x: -8.83, y: 0.73, z: 3.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6261,6 +6262,11 @@ CapsuleCollider:
   m_Height: 0.48506463
   m_Direction: 0
   m_Center: {x: -0.24253231, y: 0, z: 0}
+--- !u!95 &1524518018 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3671679948917315561, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+  m_PrefabInstance: {fileID: 1041137983202672297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528941868
 GameObject:
   m_ObjectHideFlags: 0
@@ -9227,6 +9233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 807322059}
     m_Modifications:
+    - target: {fileID: 263957561736531593, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 715712061624999089, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9300,6 +9310,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1598771398}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1524518018}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1189896908}
@@ -9311,6 +9325,10 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1644448128}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: WalkTarget
+      value: 
+      objectReference: {fileID: 236627598}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: armController
       value: 
@@ -10500,7 +10518,7 @@ PrefabInstance:
     - target: {fileID: 7084284700605220889, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 725a252c403a2e140b08d480ba04b41b, type: 2}
+      objectReference: {fileID: 9100000, guid: d99d020398ef207408e941971c0ed95b, type: 2}
     - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: QTESlide
       value: 
