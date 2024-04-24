@@ -13,7 +13,6 @@ public class ToggleRagdoll : MonoBehaviour
     float springStart = 500f;
 
     [SerializeField] ArmController armController;
-    [SerializeField] LegsController legsController;
     [SerializeField] Animator animator;
     
     float scoreMultiplier = 0;
@@ -32,23 +31,11 @@ public class ToggleRagdoll : MonoBehaviour
     ConfigurableJoint pelvisJoint;
     Quaternion pelvisStartRotation;
 
-    public GameObject thigh_l;
-    CopyAnimation thigh_l_animator;
-    public GameObject thigh_r;
-    CopyAnimation thigh_r_animator;
-    public GameObject calf_l;
-    CopyAnimation calf_l_animator;
-    public GameObject calf_r;
-    CopyAnimation calf_r_animator;
-
     public GameObject slappedParent;
     public GameObject slapperParent;
 
     public bool isSlapped = false;
-    bool Walking = false;
-
-    // Walk Testing
-    
+    public bool Walking = false;
 
     [SerializeField] private GameObject WalkTarget;
     [SerializeField] private GameObject OpponentSlapper;
@@ -84,11 +71,6 @@ public class ToggleRagdoll : MonoBehaviour
             opponentResetPositions[i] = opponentLimbs[i].transform.position;
             opponentResetRotations[i] = opponentLimbs[i].transform.rotation;
         }
-
-        thigh_l_animator = thigh_l.GetComponent<CopyAnimation>();
-        thigh_r_animator = thigh_r.GetComponent<CopyAnimation>();
-        calf_l_animator = calf_l.GetComponent<CopyAnimation>();
-        calf_r_animator = calf_r.GetComponent<CopyAnimation>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -146,7 +128,7 @@ public class ToggleRagdoll : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Walking && Input.GetKey(KeyCode.Space))
         {
             animator.SetBool("Walking", true);
         } 
@@ -157,11 +139,11 @@ public class ToggleRagdoll : MonoBehaviour
 
         if (Walking)
         {
+            // Points the walking character towards WalkTarget gameobject's transform.position
             var lookPos = (WalkTarget.transform.position - pelvis.transform.position).normalized;
             var rotation = Quaternion.LookRotation(lookPos);
             rotation *= Quaternion.Euler(0, -90, -90);
             rotation *= Quaternion.Euler(180, 0, 0);
-            //pelvis.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
             ConfigurableJointExtensions.SetTargetRotationLocal(pelvisJoint, rotation, pelvisStartRotation);
         }
     }
@@ -169,34 +151,37 @@ public class ToggleRagdoll : MonoBehaviour
     private IEnumerator StartWalking(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        // legsController.isWalking = true;
         Walking = true;
-        Debug.Log($"Walking: {legsController.isWalking}");
 
         foreach (var joint in joints)
         {
             JointDrive jointXDrive = joint.angularXDrive;
-            jointXDrive.positionSpring = springStart - (1 / currentHealth * 1000);
+            jointXDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
             joint.angularXDrive = jointXDrive;
 
             JointDrive jointYZDrive = joint.angularYZDrive;
-            jointYZDrive.positionSpring = springStart - (1 / currentHealth * 1000);
+            jointYZDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
             joint.angularYZDrive = jointYZDrive;
         }
-        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
-        pelvisJointYZDrive.positionSpring = 750f - (1 / currentHealth * 1000);
-        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
+        
+        for (int i = 0; i < 6; i++)
+        {
+            JointDrive jointXDrive = joints[i].angularXDrive;
+            jointXDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+            joints[i].angularXDrive = jointXDrive;
 
-        //thigh_l_animator.enabled = false;
-        //thigh_r_animator.enabled = false;
-        //calf_l_animator.enabled = false;
-        //calf_r_animator.enabled = false;
+            JointDrive jointYZDrive = joints[i].angularYZDrive;
+            jointYZDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+            joints[i].angularYZDrive = jointYZDrive;
+        }
+
+        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
+        pelvisJointYZDrive.positionSpring = 400f - ((1 / currentHealth) * 100);
+        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
     }
 
-    private IEnumerator Respawn(float waitTime)
+    public void Respawn()
     {
-        yield return new WaitForSeconds(waitTime);
-
         armController.ResetTargetRotation();
         armController.scoreMultiplier = 0;
         armController.scoreText.text = "";
