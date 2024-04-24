@@ -6,10 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="6c53c3d7-5f50-42a2-9441-e70b44d0c946" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/LightMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/LightMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CeilingLight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CeilingLight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Imported/Materials/PlasterWall.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Imported/Materials/PlasterWall.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Imported/Textures/rubber_tiles_4k/RubberTiles.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Imported/Textures/rubber_tiles_4k/RubberTiles.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CeilingLight.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CeilingLight.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Texture/PlaybackScreen.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Texture/PlaybackScreen.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ReplayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ReplayManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SlapAimAssist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SlapAimAssist.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eye_L_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eye_L_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eye_R_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eye_R_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eyelash_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Eyelash_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Nails_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Nails_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Arm_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Arm_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Body_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Body_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Head_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Head_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Leg_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Skin_Leg_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Tongue_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/commission-mr--john-herbert-family-guy-realistic/textures/Std_Tongue_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed0_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed0_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed1_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed1_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed2_Normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/funky-boy/textures/man_Packed2_Normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/police-3d-model/textures/police_packed0_normal.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/Characters/police-3d-model/textures/police_packed0_normal.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/large-display-tent-005-obj/1X2 RED FenceTent.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/large-display-tent-005-obj/1X2 RED FenceTent.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/promotional-tent-004-obj/1X1 Tent.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/promotional-tent-004-obj/1X1 Tent.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/stage-light/textures/T_StaticFixture_N.TGA.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/stage-light/textures/T_StaticFixture_N.TGA.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sketchfab assets/tv/source/RedLightTv.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sketchfab assets/tv/source/RedLightTv.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +69,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Mathias\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Mathias\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Mathias\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\MatDe\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\MatDe\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\MatDe\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -108,6 +129,7 @@
       <workItem from="1713765893902" duration="1575000" />
       <workItem from="1713773937640" duration="6686000" />
       <workItem from="1713833804482" duration="5009000" />
+      <workItem from="1713869394026" duration="2176000" />
     </task>
     <servers />
   </component>

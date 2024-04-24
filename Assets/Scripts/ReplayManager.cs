@@ -12,6 +12,8 @@ public class ReplayManager : MonoBehaviour
     private bool isRecording = false;
     private bool isPlaying = false;
     public Renderer quadRenderer;
+    public Renderer quadRenderer1;
+    public Renderer quadRenderer2;
 
     private void Start()
     {
@@ -55,6 +57,8 @@ public class ReplayManager : MonoBehaviour
     void DisplayFrame(Texture2D frame)
     {
         quadRenderer.material.mainTexture = frame;
+        quadRenderer1.material.mainTexture = frame;
+        quadRenderer2.material.mainTexture = frame;
     }
 
     void StartPlayback()
