@@ -5,6 +5,8 @@ using System;
 
 public class ArmController : MonoBehaviour
 {
+    [SerializeField] SlapAimAssist slapAimAssist;
+    
     public Transform target;
     ConfigurableJoint cjoint;
     Quaternion startRotation;
@@ -94,6 +96,12 @@ public class ArmController : MonoBehaviour
         {
             hasExecuted = false;
             Debug.Log("Score Slider Reset");
+            
+            if (scoreMultiplier == 3 && !slapAimAssist.aimAssistEnabled)
+            {
+                slapAimAssist.aimAssistEnabled = true;
+                Debug.Log("Aim Assist: " + slapAimAssist.aimAssistEnabled);
+            }
         }
 
         SetCurrentRotation(currentXRotation, currentYRotation, currentZRotation);
