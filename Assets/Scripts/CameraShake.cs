@@ -16,9 +16,12 @@ public class CameraShake : MonoBehaviour
 
     public float shakeAmount = 0.3f;
     public float shakeSpeed = 0.3f;
+
     Vector3 originalPos;
     Vector3 currentPos;
     Vector3 targetPos;
+
+    Vector3 followOffSet;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,8 @@ public class CameraShake : MonoBehaviour
         originalPos = camTransform.localPosition;
         currentPos = originalPos;
         targetPos = camTransform.localPosition;
+
+        // followOffSet = lookTargetDefaultP1.transform.position - originalPos;
     }
 
     // Update is called once per frame
@@ -48,6 +53,7 @@ public class CameraShake : MonoBehaviour
             if (lookTargetP1.activeInHierarchy)
             {
                 camTransform.LookAt(lookTargetP1.transform);
+                // camTransform.position = lookTargetDefaultP1.transform.position - followOffSet;
             }
         } 
         else if (toggleRagdollScriptP2.isSlapped)
@@ -55,6 +61,7 @@ public class CameraShake : MonoBehaviour
             if (lookTargetP2.activeInHierarchy)
             {
                 camTransform.LookAt(lookTargetP2.transform);
+                // camTransform.position = lookTargetDefaultP2.transform.position - followOffSet;
             }
         }
         else

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,6 +191,34 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7923271419919773587, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
   m_PrefabInstance: {fileID: 199246471}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &19168488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6205734440121708226, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+  m_PrefabInstance: {fileID: 1041137983202672297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &19168491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19168488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9abb0d71601d544e82dc2f207a40676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWalking: 0
+  thigh_l: {fileID: 591004308}
+  thigh_l_target: {fileID: 151054618}
+  thigh_r: {fileID: 1598771398}
+  thigh_r_target: {fileID: 1120646756}
+  maxX: 90
+  minX: -90
+  maxY: 90
+  minY: -90
+  maxZ: 90
+  minZ: -90
 --- !u!1 &24927132
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +607,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &151054617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 151054618}
+  m_Layer: 0
+  m_Name: thigh_l_target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &151054618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151054617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07370484, y: 0.06213896, z: 0.008584398, w: 0.9953053}
+  m_LocalPosition: {x: 0.014488064, y: -0.0053142495, z: -0.09005808}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1644448131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179642496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1843,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4813,6 +4872,37 @@ CapsuleCollider:
   m_Height: 0.4850637
   m_Direction: 0
   m_Center: {x: 0.24253185, y: 0, z: 0}
+--- !u!1 &1120646755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120646756}
+  m_Layer: 0
+  m_Name: thigh_r_target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1120646756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120646755}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.062138874, y: 0.07370487, z: 0.99530536, w: -0.008584256}
+  m_LocalPosition: {x: 0.014486349, y: -0.005314303, z: 0.09005808}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1644448131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1141379047 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 58667447424621946, guid: da1203547328fdb41974e0b5334e799a, type: 3}
@@ -6769,6 +6859,11 @@ GameObject:
 --- !u!54 &1644448130 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 960525872623665546, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+  m_PrefabInstance: {fileID: 1041137983202672297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1644448131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2585280648582255394, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
   m_PrefabInstance: {fileID: 1041137983202672297}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1658599271 stripped
@@ -9177,6 +9272,14 @@ PrefabInstance:
       value: SlappedP2
       objectReference: {fileID: 0}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: calf_l
+      value: 
+      objectReference: {fileID: 645049340}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: calf_r
+      value: 
+      objectReference: {fileID: 827013504}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: pelvis
       value: 
       objectReference: {fileID: 1644448128}
@@ -9188,6 +9291,14 @@ PrefabInstance:
       propertyPath: slapper
       value: 
       objectReference: {fileID: 712038871}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: thigh_l
+      value: 
+      objectReference: {fileID: 591004308}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: thigh_r
+      value: 
+      objectReference: {fileID: 1598771398}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: healthbar
       value: 
@@ -9216,6 +9327,10 @@ PrefabInstance:
       propertyPath: defeatScreenUI
       value: 
       objectReference: {fileID: 62971615}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: legsController
+      value: 
+      objectReference: {fileID: 19168491}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: OpponentSlapped
       value: 
@@ -9379,10 +9494,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2585280648582255394, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 151054618}
+    - targetCorrespondingSourceObject: {fileID: 2585280648582255394, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1120646756}
     - targetCorrespondingSourceObject: {fileID: 4496253097905188663, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1537969591}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6205734440121708226, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19168491}
   m_SourcePrefab: {fileID: 100100000, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
 --- !u!54 &1071769957425791977
 Rigidbody:
