@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c53c3d7-5f50-42a2-9441-e70b44d0c946" name="Changes" comment="" />
+    <list default="true" id="6c53c3d7-5f50-42a2-9441-e70b44d0c946" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HeightTest 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HeightTest 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +112,7 @@
       <workItem from="1713869394026" duration="2176000" />
       <workItem from="1713887683097" duration="4754000" />
       <workItem from="1713955335545" duration="33009000" />
-      <workItem from="1714040695647" duration="4074000" />
+      <workItem from="1714040695647" duration="9384000" />
     </task>
     <servers />
   </component>

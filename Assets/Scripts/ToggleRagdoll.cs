@@ -8,7 +8,11 @@ public class ToggleRagdoll : MonoBehaviour
 {
     AudioSource audioSource;
     Rigidbody headRB;
-    
+
+    [SerializeField] AudioClip weakSlap;
+    [SerializeField] AudioClip mediumSlap;
+    [SerializeField] AudioClip hardSlap;
+
     float forceAmount = 500f;
     float springStart = 500f;
 
@@ -54,6 +58,7 @@ public class ToggleRagdoll : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        // Initializes all reset positions based on the placed position in the world when starting the game
         resetPositions = new Vector3[limbs.Length];
         resetRotations = new Quaternion[limbs.Length];
 
@@ -77,54 +82,99 @@ public class ToggleRagdoll : MonoBehaviour
     {
         if (collision.gameObject.tag == "SlapHand" && collision.relativeVelocity.magnitude > 2)
         {
-            isSlapped = true;
-            audioSource.Play();
-
-            foreach (var joint in joints)
+            // To avoid multiple slaps triggering on same slap
+            if (!isSlapped)
             {
-                JointDrive jointXDrive = joint.angularXDrive;
-                jointXDrive.positionSpring = 0f;
-                joint.angularXDrive = jointXDrive;
+                // Is set true until respawn function is called
+                isSlapped = true;
 
-                JointDrive jointYZDrive = joint.angularYZDrive;
-                jointYZDrive.positionSpring = 0f;
-                joint.angularYZDrive = jointYZDrive;
+                // Calculates Score
+                scoreMultiplier = armController.scoreMultiplier;
+                float score = collision.relativeVelocity.magnitude * scoreMultiplier;
+                score = Mathf.Round(score);
+                Debug.Log($"Score: {score}");
+                TakeDamage(score);
+                
+                // Changes Variables Based on Score
+                armController.scoreText.text = score.ToString();
+                audioSource.volume = score / 100f * 2.5f;
+
+                // Thresholds for scores that triggers certain effects
+                if (score < 10)
+                {
+                    Debug.Log("Weak Slap");
+                    armController.scoreText.color = Color.red;
+                    audioSource.clip = weakSlap;
+                    audioSource.Play();
+
+                    JointDrive jointXDrive = joints[6].angularXDrive;
+                    jointXDrive.positionSpring = 0;
+                    joints[6].angularXDrive = jointXDrive;
+
+                    JointDrive jointYZDrive = joints[6].angularYZDrive;
+                    jointYZDrive.positionSpring = 0;
+                    joints[6].angularYZDrive = jointYZDrive;
+
+                    StartCoroutine(WaitThenRespawn(3));
+                }
+                else if (score < 20)
+                {
+                    Debug.Log("Good Slap");
+                    armController.scoreText.color = Color.yellow;
+                    audioSource.clip = mediumSlap;
+                    audioSource.Play();
+
+                    for (int i = 1; i < 6; i++)
+                    {
+                        JointDrive jointXDrive = joints[i].angularXDrive;
+                        jointXDrive.positionSpring = 0;
+                        joints[i].angularXDrive = jointXDrive;
+
+                        JointDrive jointYZDrive = joints[i].angularYZDrive;
+                        jointYZDrive.positionSpring = 0;
+                        joints[i].angularYZDrive = jointYZDrive;
+                    }
+
+                    StartCoroutine(WaitThenRespawn(3));
+                }
+                else
+                {
+                    Debug.Log("Amazing Slap");
+                    armController.scoreText.color = Color.green;
+                    audioSource.clip = hardSlap;
+                    audioSource.Play();
+
+                    // Activates ragdoll based on all joint's springs get set to 0
+                    foreach (var joint in joints)
+                    {
+                        JointDrive jointXDrive = joint.angularXDrive;
+                        jointXDrive.positionSpring = 0f;
+                        joint.angularXDrive = jointXDrive;
+
+                        JointDrive jointYZDrive = joint.angularYZDrive;
+                        jointYZDrive.positionSpring = 0f;
+                        joint.angularYZDrive = jointYZDrive;
+                    }
+                    
+                    // Starts the walking controls after a certain amounts of seconds with ragdoll
+                    StartCoroutine(StartWalking(3));
+                }
+
+                // Adds force to the head based on the contact points normal vector and the relative velocity of the collision
+                headRB.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
+                Debug.Log($"Force: {collision.relativeVelocity.magnitude * forceAmount}");
             }
-
-            Debug.Log(collision.GetContact(0).normal);
-            scoreMultiplier = armController.scoreMultiplier;
-            float score = collision.relativeVelocity.magnitude * scoreMultiplier;
-            score = Mathf.Round(score);
-            Debug.Log($"Score: {score}");
-            TakeDamage(score);
-            armController.scoreText.text = score.ToString();
-
-            if (score < 10)
-            {
-                Debug.Log("Weak Slap");
-            } 
-            else if (score < 20)
-            {
-                Debug.Log("Good Slap");
-            }
-            else
-            {
-                Debug.Log("Amazing Slap");
-            }
-
-            headRB.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
-            Debug.Log($"Force: {collision.relativeVelocity.magnitude * forceAmount}");
-
-            StartCoroutine(StartWalking(3));
         }
     }
 
+    // Is called when a character has taken damage
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         healthbar.UpdateHealthbar(currentHealth / maxHealth);
     }
 
+    // Is called when the given player the script is on has lost
     public void Defeated()
     {
         Debug.Log("Game Ended");
@@ -133,7 +183,7 @@ public class ToggleRagdoll : MonoBehaviour
         // Time.timeScale = 0f;
     }
 
- 
+    // for the restart button on the end screen
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -141,6 +191,8 @@ public class ToggleRagdoll : MonoBehaviour
 
     public void Update()
     {
+        // Walking Controls
+        //Left
         if (Walking && Input.GetKey(KeyCode.LeftArrow))
         {
             animator.SetBool("WalkingLeft", true);
@@ -150,6 +202,7 @@ public class ToggleRagdoll : MonoBehaviour
             animator.SetBool("WalkingLeft", false);
         }
 
+        //Right
         if (Walking && Input.GetKey(KeyCode.RightArrow))
         {
             animator.SetBool("WalkingRight", true);
@@ -170,6 +223,7 @@ public class ToggleRagdoll : MonoBehaviour
         }
     }
 
+    // Is called when the walking controls should activate
     private IEnumerator StartWalking(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
@@ -210,6 +264,7 @@ public class ToggleRagdoll : MonoBehaviour
         }
     }
 
+    // Is called to reset all positions and start a new round where the players switch sides.
     public void Respawn()
     {
         armController.ResetTargetRotation();
