@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.FilePathAttribute;
 using static UnityEngine.GraphicsBuffer;
 
 public class ToggleRagdoll : MonoBehaviour
@@ -160,33 +161,41 @@ public class ToggleRagdoll : MonoBehaviour
     private IEnumerator StartWalking(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Walking = true;
 
-        foreach (var joint in joints)
+        if (currentHealth <= 0)
         {
-            JointDrive jointXDrive = joint.angularXDrive;
-            jointXDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
-            joint.angularXDrive = jointXDrive;
-
-            JointDrive jointYZDrive = joint.angularYZDrive;
-            jointYZDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
-            joint.angularYZDrive = jointYZDrive;
+            Defeated();
         }
-        
-        for (int i = 0; i < 6; i++)
+        else
         {
-            JointDrive jointXDrive = joints[i].angularXDrive;
-            jointXDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
-            joints[i].angularXDrive = jointXDrive;
+            Walking = true;
 
-            JointDrive jointYZDrive = joints[i].angularYZDrive;
-            jointYZDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
-            joints[i].angularYZDrive = jointYZDrive;
+            foreach (var joint in joints)
+            {
+                JointDrive jointXDrive = joint.angularXDrive;
+                jointXDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
+                joint.angularXDrive = jointXDrive;
+
+                JointDrive jointYZDrive = joint.angularYZDrive;
+                jointYZDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
+                joint.angularYZDrive = jointYZDrive;
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                JointDrive jointXDrive = joints[i].angularXDrive;
+                jointXDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+                joints[i].angularXDrive = jointXDrive;
+
+                JointDrive jointYZDrive = joints[i].angularYZDrive;
+                jointYZDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+                joints[i].angularYZDrive = jointYZDrive;
+            }
+
+            JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
+            pelvisJointYZDrive.positionSpring = 400f - ((1 / currentHealth) * 100);
+            pelvisJoint.angularYZDrive = pelvisJointYZDrive;
         }
-
-        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
-        pelvisJointYZDrive.positionSpring = 400f - ((1 / currentHealth) * 100);
-        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
     }
 
     public void Respawn()
@@ -196,51 +205,46 @@ public class ToggleRagdoll : MonoBehaviour
         armController.scoreText.text = "";
         armController.sliderText.text = armController.scoreMultiplier.ToString();
 
-        if (currentHealth <= 0)
+        isSlapped = false;
+
+        foreach (var joint in joints)
         {
-            Defeated();
+            JointDrive jointXDrive = joint.angularXDrive;
+            jointXDrive.positionSpring = springStart - (1 / currentHealth * 1000);
+            joint.angularXDrive = jointXDrive;
+
+            JointDrive jointYZDrive = joint.angularYZDrive;
+            jointYZDrive.positionSpring = springStart - (1/currentHealth * 1000);
+            joint.angularYZDrive = jointYZDrive;
         }
-        else
+        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
+        pelvisJointYZDrive.positionSpring = 1500f - (1 / currentHealth * 1000);
+        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
+
+        ConfigurableJointExtensions.SetTargetRotationLocal(pelvisJoint, pelvisStartRotation, pelvisStartRotation);
+
+        for (int i = 0; i < limbs.Length; i++)
         {
-            isSlapped = false;
-
-            foreach (var joint in joints)
-            {
-                JointDrive jointXDrive = joint.angularXDrive;
-                jointXDrive.positionSpring = springStart - (1 / currentHealth * 1000);
-                joint.angularXDrive = jointXDrive;
-
-                JointDrive jointYZDrive = joint.angularYZDrive;
-                jointYZDrive.positionSpring = springStart - (1/currentHealth * 1000);
-                joint.angularYZDrive = jointYZDrive;
-            }
-            JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
-            pelvisJointYZDrive.positionSpring = 1500f - (1 / currentHealth * 1000);
-            pelvisJoint.angularYZDrive = pelvisJointYZDrive;
-
-            for (int i = 0; i < limbs.Length; i++)
-            {
-                limbs[i].transform.position = resetPositions[i];
-                limbs[i].transform.rotation = resetRotations[i];
-            }
-
-            for (int i = 0; i < opponentLimbs.Length; i++)
-            {
-                opponentLimbs[i].transform.position = opponentResetPositions[i];
-                opponentLimbs[i].transform.rotation = opponentResetRotations[i];
-            }
-
-            foreach (var rigidbody in rigidbodies)
-            {
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.angularVelocity = Vector3.zero;
-            }
-
-            OpponentSlapper.SetActive(false);
-            OpponentSlapped.SetActive(true);
-
-            slapperParent.SetActive(true);
-            slappedParent.SetActive(false);
+            limbs[i].transform.position = resetPositions[i];
+            limbs[i].transform.rotation = resetRotations[i];
         }
+
+        for (int i = 0; i < opponentLimbs.Length; i++)
+        {
+            opponentLimbs[i].transform.position = opponentResetPositions[i];
+            opponentLimbs[i].transform.rotation = opponentResetRotations[i];
+        }
+
+        foreach (var rigidbody in rigidbodies)
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+        }
+
+        OpponentSlapper.SetActive(false);
+        OpponentSlapped.SetActive(true);
+
+        slapperParent.SetActive(true);
+        slappedParent.SetActive(false);
     }
 }
