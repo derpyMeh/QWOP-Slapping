@@ -18,6 +18,7 @@ public class ToggleRagdoll : MonoBehaviour
 
     [SerializeField] ArmController armController;
     [SerializeField] Animator animator;
+    [SerializeField] LightManager lightManager;
     
     float scoreMultiplier = 0;
     public Healthbar healthbar;
@@ -115,6 +116,7 @@ public class ToggleRagdoll : MonoBehaviour
                     jointYZDrive.positionSpring = 0;
                     joints[6].angularYZDrive = jointYZDrive;
 
+                    StartCoroutine(lightManager.SlowFlashing(3));
                     StartCoroutine(WaitThenRespawn(3));
                 }
                 else if (score < 20)
@@ -135,6 +137,7 @@ public class ToggleRagdoll : MonoBehaviour
                         joints[i].angularYZDrive = jointYZDrive;
                     }
 
+                    StartCoroutine(lightManager.MediumFlashing(3));
                     StartCoroutine(WaitThenRespawn(3));
                 }
                 else
@@ -155,7 +158,8 @@ public class ToggleRagdoll : MonoBehaviour
                         jointYZDrive.positionSpring = 0f;
                         joint.angularYZDrive = jointYZDrive;
                     }
-                    
+
+                    StartCoroutine(lightManager.FastFlashing(3));
                     // Starts the walking controls after a certain amounts of seconds with ragdoll
                     StartCoroutine(StartWalking(3));
                 }
