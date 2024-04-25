@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.FilePathAttribute;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class ToggleRagdoll : MonoBehaviour
 {
@@ -134,6 +133,7 @@ public class ToggleRagdoll : MonoBehaviour
         // Time.timeScale = 0f;
     }
 
+ 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
