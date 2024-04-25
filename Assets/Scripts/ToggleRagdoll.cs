@@ -197,6 +197,11 @@ public class ToggleRagdoll : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void Update()
     {
         // Walking Controls
