@@ -11214,6 +11214,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: lightManager
+      value: 
+      objectReference: {fileID: 1843012458}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: armController
       value: 
       objectReference: {fileID: 563076449}
@@ -31034,7 +31038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc6b3bd9a74292428ad28209ca14aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FastSceneLights_RedWhite: 1
+  sceneLight: {fileID: 1909003804}
+  FastSceneLights_RedWhite: 0
   MediumSceneLights_RedWhite: 0
   SlowSceneLights_RedWhite: 0
 --- !u!4 &1843012459
@@ -32197,6 +32202,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 185390421878638907, guid: 2ec6917ac2e93ee40b7dfd3773149a79, type: 3}
   m_PrefabInstance: {fileID: 1907081482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1909003804 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 733721022306956397, guid: 023e9f94132264943ae8bdebe8afe4e7, type: 3}
+  m_PrefabInstance: {fileID: 1488493295}
   m_PrefabAsset: {fileID: 0}
 --- !u!54 &1925348273
 Rigidbody:
@@ -35961,6 +35971,10 @@ PrefabInstance:
       propertyPath: mediumSlap
       value: 
       objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: lightManager
+      value: 
+      objectReference: {fileID: 1843012458}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: armController
       value: 
