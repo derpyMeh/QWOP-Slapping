@@ -8,6 +8,7 @@ TagManager:
   - SlapHand
   - Player1
   - Player2
+  - LightManager
   layers:
   - Default
   - TransparentFX

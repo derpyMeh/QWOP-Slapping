@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 public class ReplayManager : MonoBehaviour
 {
@@ -9,11 +11,17 @@ public class ReplayManager : MonoBehaviour
 
     public float delayBetweenFrames = 0.05f;
     private List<Texture2D> frames = new List<Texture2D>();
+    private List<Texture2D> lastFramesRecording = new List<Texture2D>();
     private bool isRecording = false;
     private bool isPlaying = false;
-    public Renderer quadRenderer;
-    public Renderer quadRenderer1;
-    public Renderer quadRenderer2;
+    private bool saveLastRecording;
+    public Renderer TV1_quadRenderer;
+    public Renderer TV2_quadRenderer;
+    public Renderer TV3_quadRenderer;
+    public Renderer TV4_quadRenderer;
+    
+    //public Renderer quadRenderer1;
+    //public Renderer quadRenderer2;
 
     private void Start()
     {
@@ -29,6 +37,10 @@ public class ReplayManager : MonoBehaviour
     void StopRecording()
     {
         isRecording = false;
+        /*if (saveLastRecording == true)
+        {
+            lastFramesRecording = frames;
+        }*/
     }
 
     void RecordFrame()
@@ -54,32 +66,30 @@ public class ReplayManager : MonoBehaviour
         return frame;
     }
 
-    void DisplayFrame(Texture2D frame)
+    void DisplayFrame(Texture2D frame, Renderer quadRenderer)
     {
         quadRenderer.material.mainTexture = frame;
-        quadRenderer1.material.mainTexture = frame;
-        quadRenderer2.material.mainTexture = frame;
     }
 
-    void StartPlayback()
+    void StartPlayback(List<Texture2D> framesRecording, Renderer quadRenderer)
     {
-        if (!isPlaying && frames.Count > 0)
+        if (framesRecording.Count > 0)
         {
-            StartCoroutine(PlayBack());
+            StartCoroutine(PlayBack(framesRecording, quadRenderer));
+            //framesRecording = lastFramesRecording;
         }
     }
 
-    IEnumerator PlayBack()
+    IEnumerator PlayBack(List<Texture2D> framesRecording, Renderer quadRenderer)
     {
-        isPlaying = true;
-
-        for (int i = 0; i < frames.Count; i++)
+        //isPlaying = true;
+        for (int i = 0; i < framesRecording.Count; i++)
         {
-            DisplayFrame(frames[i]);
+            DisplayFrame(framesRecording[i], quadRenderer);
             yield return new WaitForSeconds(delayBetweenFrames);
         }
 
-        isPlaying = false;
+        //isPlaying = false;
     }
 
     private void Update()
@@ -94,10 +104,26 @@ public class ReplayManager : MonoBehaviour
             StopRecording();
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))        //Play currently stored replay in frames list
         {
-            StartPlayback();
+            StartPlayback(frames, TV1_quadRenderer);
+            /*StartPlayback(frames, TV3_quadRenderer);
+            StartPlayback(frames, TV4_quadRenderer);*/
         }
+        if (Input.GetKeyDown(KeyCode.O))        //Play last saved recorded replay derived from frames list
+        {
+            StartPlayback(lastFramesRecording, TV4_quadRenderer);
+            /*StartPlayback(frames, TV3_quadRenderer);
+            StartPlayback(frames, TV4_quadRenderer);*/
+        }
+        if (Input.GetKeyDown(KeyCode.M))        //Save the latest recording derived from frames list
+        {
+            foreach (var frame in frames)
+            {
+                lastFramesRecording.Add(frame);
+            }
+        }
+        
     }
 
     private void LateUpdate()
