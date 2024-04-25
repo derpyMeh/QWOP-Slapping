@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class CameraShake : MonoBehaviour
 {
@@ -8,9 +9,6 @@ public class CameraShake : MonoBehaviour
     public GameObject lookTargetP2;
     public GameObject lookTargetDefaultP1;
     public GameObject lookTargetDefaultP2;
-
-    public GameObject player1;
-    public GameObject player2;
 
     [SerializeField] ToggleRagdoll toggleRagdollScriptP1;
     [SerializeField] ToggleRagdoll toggleRagdollScriptP2;
@@ -56,6 +54,8 @@ public class CameraShake : MonoBehaviour
                 camTransform.position = new Vector3(Mathf.Lerp(currentPos.x, lookTargetP1.transform.position.x, Time.deltaTime*shakeAmount), lookTargetP1.transform.position.y, lookTargetP1.transform.position.z);
                 camTransform.LookAt(lookTargetP1.transform);
                 camTransform.position = new Vector3(lookTargetP1.transform.position.x + 2, lookTargetP1.transform.position.y, lookTargetP1.transform.position.z);
+                
+                camTransform.rotation *= Quaternion.Euler(0, 180, 0);
             }
         }
         else if (toggleRagdollScriptP2.isSlapped)
@@ -67,6 +67,8 @@ public class CameraShake : MonoBehaviour
                 camTransform.LookAt(lookTargetP2.transform);
                 camTransform.position = new Vector3(lookTargetP2.transform.position.x+2 , lookTargetP2.transform.position.y, lookTargetP2.transform.position.z);
                 // camTransform.transform.SetParent(lookTargetP2.transform);    //lookTargetDefaultP2.transform.position - followOffSet;
+
+                camTransform.rotation *= Quaternion.Euler(0, 180, 0);
             }
         }
         else

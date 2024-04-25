@@ -4451,8 +4451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1ToggleRagdoll: {fileID: 1602813530}
   p2ToggleRagdoll: {fileID: 942567323}
-  camTransform: {fileID: 0}
-  currentPos: {x: 0, y: 0, z: 0}
+  camTransform: {fileID: 832329371}
+  currentPos: {x: 21.47, y: 2.78, z: -0.08}
 --- !u!1 &242574456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7130,8 +7130,6 @@ MonoBehaviour:
   lookTargetP2: {fileID: 942567315}
   lookTargetDefaultP1: {fileID: 380419754}
   lookTargetDefaultP2: {fileID: 712038871}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   toggleRagdollScriptP1: {fileID: 1602813530}
   toggleRagdollScriptP2: {fileID: 942567323}
   shakeAmount: 0.15
@@ -11188,6 +11186,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1076252174}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: hardSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: weakSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1170796890}
@@ -11203,6 +11209,10 @@ PrefabInstance:
       propertyPath: WalkTarget
       value: 
       objectReference: {fileID: 236627598}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: mediumSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: armController
       value: 
@@ -14643,8 +14653,6 @@ MonoBehaviour:
   lookTargetP2: {fileID: 942567315}
   lookTargetDefaultP1: {fileID: 380419754}
   lookTargetDefaultP2: {fileID: 712038871}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   toggleRagdollScriptP1: {fileID: 1602813530}
   toggleRagdollScriptP2: {fileID: 942567323}
   shakeAmount: 0.15
@@ -35926,6 +35934,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1524518018}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: hardSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: weakSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 676451227}
@@ -35941,6 +35957,10 @@ PrefabInstance:
       propertyPath: WalkTarget
       value: 
       objectReference: {fileID: 236627598}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: mediumSlap
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a82f9e87f025234b8bc6aee16890db8, type: 3}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: armController
       value: 
