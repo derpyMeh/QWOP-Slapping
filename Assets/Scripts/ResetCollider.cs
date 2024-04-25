@@ -15,16 +15,16 @@ public class ResetCollider : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player1" && p1ToggleRagdoll.Walking)
+        if (other.gameObject.CompareTag("Player1") && p1ToggleRagdoll.Walking)
         {
             p1ToggleRagdoll.Walking = false;
             p1ToggleRagdoll.Respawn();
             camTransform.position = currentPos;
 
         }
-        if (collision.gameObject.tag == "Player2" && p2ToggleRagdoll.Walking)
+        if (other.gameObject.CompareTag("Player2") && p2ToggleRagdoll.Walking)
         {
             p2ToggleRagdoll.Walking = false;
             p2ToggleRagdoll.Respawn();
