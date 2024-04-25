@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6c53c3d7-5f50-42a2-9441-e70b44d0c946" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.QWOP-Slapping/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Lights/STOBO.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Lights/STOBO.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FlashingLights.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FlashingLights.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ReplayManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ReplayManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +110,7 @@
       <workItem from="1713833804482" duration="5009000" />
       <workItem from="1713869394026" duration="2176000" />
       <workItem from="1713887683097" duration="4754000" />
-      <workItem from="1713955335545" duration="32668000" />
+      <workItem from="1713955335545" duration="33009000" />
     </task>
     <servers />
   </component>

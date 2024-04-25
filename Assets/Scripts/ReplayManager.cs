@@ -118,6 +118,7 @@ public class ReplayManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))        //Save the latest recording derived from frames list
         {
+            lastFramesRecording.Clear();
             foreach (var frame in frames)
             {
                 lastFramesRecording.Add(frame);
