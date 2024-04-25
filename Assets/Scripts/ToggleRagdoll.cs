@@ -100,11 +100,23 @@ public class ToggleRagdoll : MonoBehaviour
             TakeDamage(score);
             armController.scoreText.text = score.ToString();
 
+            if (score < 10)
+            {
+                Debug.Log("Weak Slap");
+            } 
+            else if (score < 20)
+            {
+                Debug.Log("Good Slap");
+            }
+            else
+            {
+                Debug.Log("Amazing Slap");
+            }
+
             headRB.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
             Debug.Log($"Force: {collision.relativeVelocity.magnitude * forceAmount}");
 
             StartCoroutine(StartWalking(3));
-            //StartCoroutine(Respawn(3));
         }
     }
 
@@ -246,5 +258,12 @@ public class ToggleRagdoll : MonoBehaviour
 
         slapperParent.SetActive(true);
         slappedParent.SetActive(false);
+    }
+
+    private IEnumerator WaitThenRespawn(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        Respawn();
     }
 }
