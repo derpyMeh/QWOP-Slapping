@@ -15,6 +15,8 @@ public class ToggleRagdoll : MonoBehaviour
 
     float forceAmount = 500f;
     float springStart = 500f;
+    float initialTime = 30f;
+    float currentTime = 30f;
 
     [SerializeField] ArmController armController;
     [SerializeField] Animator animator;
@@ -41,6 +43,7 @@ public class ToggleRagdoll : MonoBehaviour
 
     public bool isSlapped = false;
     public bool Walking = false;
+    bool isDefeated = false;
 
     [SerializeField] private GameObject WalkTarget;
     [SerializeField] private GameObject OpponentSlapper;
@@ -182,6 +185,7 @@ public class ToggleRagdoll : MonoBehaviour
     public void Defeated()
     {
         Debug.Log("Game Ended");
+        isDefeated = true;
         defeatScreenUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         // Time.timeScale = 0f;
@@ -218,6 +222,31 @@ public class ToggleRagdoll : MonoBehaviour
 
         if (Walking)
         {
+            // Timer that counts down which triggers defeat if it reach 0
+            if (!isDefeated)
+            {
+                currentTime -= Time.deltaTime;
+                armController.scoreText.text = Mathf.Round(currentTime).ToString();
+            }
+            
+            if (currentTime <= 0 && !isDefeated)
+            {
+                Defeated();
+                armController.scoreText.text = "";
+            }
+            else if (currentTime < 10 && !isDefeated)
+            {
+                armController.scoreText.color = Color.red;
+            }
+            else if (currentTime < 20 && !isDefeated)
+            {
+                armController.scoreText.color = Color.yellow;
+            }
+            else if (currentTime < 10 && !isDefeated)
+            {
+                armController.scoreText.color = Color.green;
+            }
+
             // Points the walking character towards WalkTarget gameobject's transform.position
             var lookPos = (WalkTarget.transform.position - pelvis.transform.position).normalized;
             var rotation = Quaternion.LookRotation(lookPos);
@@ -239,6 +268,7 @@ public class ToggleRagdoll : MonoBehaviour
         else
         {
             Walking = true;
+            currentTime = initialTime;
 
             foreach (var joint in joints)
             {
