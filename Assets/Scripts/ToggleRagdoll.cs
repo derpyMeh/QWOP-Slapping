@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class ToggleRagdoll : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class ToggleRagdoll : MonoBehaviour
     
     float forceAmount = 500f;
     float springStart = 500f;
-    [SerializeField] ArmController armController;
-    float scoreMultiplier = 0;
 
+    [SerializeField] ArmController armController;
+    [SerializeField] Animator animator;
+    
+    float scoreMultiplier = 0;
     public Healthbar healthbar;
     public float maxHealth;
     float currentHealth;
@@ -26,14 +29,18 @@ public class ToggleRagdoll : MonoBehaviour
 
     public GameObject pelvis;
     ConfigurableJoint pelvisJoint;
+    Quaternion pelvisStartRotation;
 
     public GameObject slappedParent;
     public GameObject slapperParent;
 
     public bool isSlapped = false;
-    
+    public bool Walking = false;
+
+    [SerializeField] private GameObject WalkTarget;
     [SerializeField] private GameObject OpponentSlapper;
     [SerializeField] private GameObject OpponentSlapped;
+
     public GameObject[] opponentLimbs;
     private Vector3[] opponentResetPositions;
     private Quaternion[] opponentResetRotations;
@@ -43,6 +50,7 @@ public class ToggleRagdoll : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         headRB = GetComponent<Rigidbody>();
         pelvisJoint = pelvis.GetComponent<ConfigurableJoint>();
+        pelvisStartRotation = pelvis.transform.rotation;
 
         currentHealth = maxHealth;
 
@@ -94,7 +102,8 @@ public class ToggleRagdoll : MonoBehaviour
             headRB.AddForce(collision.GetContact(0).normal * collision.relativeVelocity.magnitude * forceAmount);
             Debug.Log($"Force: {collision.relativeVelocity.magnitude * forceAmount}");
 
-            StartCoroutine(Respawn(3));
+            StartCoroutine(StartWalking(3));
+            //StartCoroutine(Respawn(3));
         }
     }
 
@@ -117,10 +126,62 @@ public class ToggleRagdoll : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private IEnumerator Respawn(float waitTime)
+    public void Update()
+    {
+        if (Walking && Input.GetKey(KeyCode.Space))
+        {
+            animator.SetBool("Walking", true);
+        } 
+        else if (animator.GetBool("Walking"))
+        {
+            animator.SetBool("Walking", false);
+        }
+
+        if (Walking)
+        {
+            // Points the walking character towards WalkTarget gameobject's transform.position
+            var lookPos = (WalkTarget.transform.position - pelvis.transform.position).normalized;
+            var rotation = Quaternion.LookRotation(lookPos);
+            rotation *= Quaternion.Euler(0, -90, -90);
+            rotation *= Quaternion.Euler(180, 0, 0);
+            ConfigurableJointExtensions.SetTargetRotationLocal(pelvisJoint, rotation, pelvisStartRotation);
+        }
+    }
+
+    private IEnumerator StartWalking(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        Walking = true;
 
+        foreach (var joint in joints)
+        {
+            JointDrive jointXDrive = joint.angularXDrive;
+            jointXDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
+            joint.angularXDrive = jointXDrive;
+
+            JointDrive jointYZDrive = joint.angularYZDrive;
+            jointYZDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
+            joint.angularYZDrive = jointYZDrive;
+        }
+        
+        for (int i = 0; i < 6; i++)
+        {
+            JointDrive jointXDrive = joints[i].angularXDrive;
+            jointXDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+            joints[i].angularXDrive = jointXDrive;
+
+            JointDrive jointYZDrive = joints[i].angularYZDrive;
+            jointYZDrive.positionSpring = 50 - ((1 / currentHealth) * 100);
+            joints[i].angularYZDrive = jointYZDrive;
+        }
+
+        JointDrive pelvisJointYZDrive = pelvisJoint.angularYZDrive;
+        pelvisJointYZDrive.positionSpring = 400f - ((1 / currentHealth) * 100);
+        pelvisJoint.angularYZDrive = pelvisJointYZDrive;
+    }
+
+    public void Respawn()
+    {
         armController.ResetTargetRotation();
         armController.scoreMultiplier = 0;
         armController.scoreText.text = "";
