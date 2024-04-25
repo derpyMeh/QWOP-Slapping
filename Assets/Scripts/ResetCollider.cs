@@ -9,12 +9,12 @@ public class ResetCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player1")
+        if (collision.gameObject.tag == "Player1" && p1ToggleRagdoll.Walking)
         {
             p1ToggleRagdoll.Walking = false;
             p1ToggleRagdoll.Respawn();
         }
-        if (collision.gameObject.tag == "Player2")
+        if (collision.gameObject.tag == "Player2" && p2ToggleRagdoll.Walking)
         {
             p2ToggleRagdoll.Walking = false;
             p2ToggleRagdoll.Respawn();

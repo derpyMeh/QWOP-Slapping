@@ -128,13 +128,22 @@ public class ToggleRagdoll : MonoBehaviour
 
     public void Update()
     {
-        if (Walking && Input.GetKey(KeyCode.Space))
+        if (Walking && Input.GetKey(KeyCode.LeftArrow))
         {
-            animator.SetBool("Walking", true);
+            animator.SetBool("WalkingLeft", true);
         } 
-        else if (animator.GetBool("Walking"))
+        else if (animator.GetBool("WalkingLeft"))
         {
-            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingLeft", false);
+        }
+
+        if (Walking && Input.GetKey(KeyCode.RightArrow))
+        {
+            animator.SetBool("WalkingRight", true);
+        }
+        else if (animator.GetBool("WalkingRight"))
+        {
+            animator.SetBool("WalkingRight", false);
         }
 
         if (Walking)
@@ -156,11 +165,11 @@ public class ToggleRagdoll : MonoBehaviour
         foreach (var joint in joints)
         {
             JointDrive jointXDrive = joint.angularXDrive;
-            jointXDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
+            jointXDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
             joint.angularXDrive = jointXDrive;
 
             JointDrive jointYZDrive = joint.angularYZDrive;
-            jointYZDrive.positionSpring = 250 - ((1 / currentHealth) * 100);
+            jointYZDrive.positionSpring = 500 - ((1 / currentHealth) * 100);
             joint.angularYZDrive = jointYZDrive;
         }
         
