@@ -51,15 +51,15 @@ public class FlashingLights : MonoBehaviour
         
         if (Timer >= timeTillTransition && _lightManager.FastSceneLights_RedWhite)
         {
-            FlashEffect_(0.05f,0.20f);
+            FlashEffect_(0.015f,0.06f);
         }
         else if (Timer >= timeTillTransition && _lightManager.MediumSceneLights_RedWhite)
         {
-            FlashEffect_(0.15f,0.30f);
+            FlashEffect_(0.3f,0.12f);
         }
         else if (Timer >= timeTillTransition && _lightManager.SlowSceneLights_RedWhite)
         {
-            FlashEffect_(0.80f,1.5f);
+            FlashEffect_(0.6f,0.24f);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))        //On event, use Lerp functions to change lights

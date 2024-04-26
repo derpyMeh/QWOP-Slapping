@@ -8,13 +8,16 @@ using Debug = System.Diagnostics.Debug;
 public class ReplayManager : MonoBehaviour
 {
     public Camera recCam;
+    
+    [SerializeField] private GameObject showReplayLocationGameObject;
+    //[SerializeField] private Camera mainCamera;
 
     public float delayBetweenFrames = 0.05f;
     private List<Texture2D> frames = new List<Texture2D>();
     private List<Texture2D> lastFramesRecording = new List<Texture2D>();
     private bool isRecording = false;
     private bool isPlaying = false;
-    private bool saveLastRecording;
+    //private bool saveLastRecording;
     public Renderer TV1_quadRenderer;
     public Renderer TV2_quadRenderer;
     public Renderer TV3_quadRenderer;
@@ -94,7 +97,7 @@ public class ReplayManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             StartRecording();
         }
@@ -108,13 +111,13 @@ public class ReplayManager : MonoBehaviour
         {
             StartPlayback(frames, TV1_quadRenderer);
             /*StartPlayback(frames, TV3_quadRenderer);
-            StartPlayback(frames, TV4_quadRenderer);*/
+            StartPlayback(frames, TV4_quadRenderer);#1#
         }
         if (Input.GetKeyDown(KeyCode.O))        //Play last saved recorded replay derived from frames list
         {
             StartPlayback(lastFramesRecording, TV4_quadRenderer);
             /*StartPlayback(frames, TV3_quadRenderer);
-            StartPlayback(frames, TV4_quadRenderer);*/
+            StartPlayback(frames, TV4_quadRenderer);#1#
         }
         if (Input.GetKeyDown(KeyCode.M))        //Save the latest recording derived from frames list
         {
@@ -123,7 +126,7 @@ public class ReplayManager : MonoBehaviour
             {
                 lastFramesRecording.Add(frame);
             }
-        }
+        }*/
         
     }
 
@@ -131,4 +134,16 @@ public class ReplayManager : MonoBehaviour
     {
         RecordFrame();
     }
+    
+    
+
+    public void ShowAmazingReplay(float timeTillReset)
+    {
+        //NOTE: Husk at StartRecording() ved 3x multiplier
+        //og husk at StopRecording() ved StartWalking call.
+        
+        StartPlayback(frames, TV1_quadRenderer);       
+        recCam.transform.position = showReplayLocationGameObject.transform.position;
+    }
+    
 }

@@ -1,17 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 
 public class ToggleRagdoll : MonoBehaviour
 {
+    private SoundEffectsSetup _soundEffectsSetup;
+    private DialogueSystem _dialogueSystem;
+    
     AudioSource audioSource;
+    [SerializeField] private AudioSource soundEffectsAudioSource;
+    [SerializeField] private AudioSource audienceAudioSource;
     Rigidbody headRB;
 
     [SerializeField] AudioClip weakSlap;
     [SerializeField] AudioClip mediumSlap;
     [SerializeField] AudioClip hardSlap;
+    
+    [SerializeField] AudioClip mediumSlapReaction;
+    [SerializeField] AudioClip hardSlapReaction;
+    
+    [SerializeField] AudioClip booAudienceReaction;
+    
+    [SerializeField] AudioClip weakAudienceReaction;
+    [SerializeField] AudioClip mediumAudienceReaction;
+    [SerializeField] AudioClip hardAudienceReaction;
+    
+    
+    
 
     float forceAmount = 500f;
     float springStart = 500f;
@@ -21,6 +40,7 @@ public class ToggleRagdoll : MonoBehaviour
     [SerializeField] ArmController armController;
     [SerializeField] Animator animator;
     [SerializeField] LightManager lightManager;
+    [SerializeField] ReplayManager _replayManager;
     
     float scoreMultiplier = 0;
     public Healthbar healthbar;
@@ -53,8 +73,16 @@ public class ToggleRagdoll : MonoBehaviour
     private Vector3[] opponentResetPositions;
     private Quaternion[] opponentResetRotations;
 
+    private void Awake()
+    {
+        _soundEffectsSetup = FindObjectOfType<SoundEffectsSetup>();
+        _dialogueSystem = FindObjectOfType<DialogueSystem>();
+        _replayManager = FindObjectOfType<ReplayManager>();
+    }
+
     void Start()
     {
+        
         audioSource = GetComponent<AudioSource>();
         headRB = GetComponent<Rigidbody>();
         pelvisJoint = pelvis.GetComponent<ConfigurableJoint>();
@@ -110,6 +138,20 @@ public class ToggleRagdoll : MonoBehaviour
                     armController.scoreText.color = Color.red;
                     audioSource.clip = weakSlap;
                     audioSource.Play();
+                    _dialogueSystem.playRandomArnold_Insult();
+                    
+                    int randomInt = Random.Range(1, 3);
+                    if (randomInt >= 2)
+                    {
+                        audienceAudioSource.clip = weakAudienceReaction;
+                        audienceAudioSource.Play();
+                    }
+                    else
+                    {
+                        audienceAudioSource.clip = booAudienceReaction;
+                        audienceAudioSource.Play();
+                    }
+                    
 
                     JointDrive jointXDrive = joints[6].angularXDrive;
                     jointXDrive.positionSpring = 0;
@@ -121,6 +163,8 @@ public class ToggleRagdoll : MonoBehaviour
 
                     StartCoroutine(lightManager.SlowFlashing(3));
                     StartCoroutine(WaitThenRespawn(3));
+                    
+                    
                 }
                 else if (score < 20)
                 {
@@ -128,6 +172,11 @@ public class ToggleRagdoll : MonoBehaviour
                     armController.scoreText.color = Color.yellow;
                     audioSource.clip = mediumSlap;
                     audioSource.Play();
+                    soundEffectsAudioSource.clip = mediumSlapReaction;
+                    soundEffectsAudioSource.Play();
+                    audienceAudioSource.clip = mediumAudienceReaction;
+                    audienceAudioSource.Play();
+                    _dialogueSystem.playRandomArnold_Neutral();
 
                     for (int i = 1; i < 6; i++)
                     {
@@ -149,6 +198,12 @@ public class ToggleRagdoll : MonoBehaviour
                     armController.scoreText.color = Color.green;
                     audioSource.clip = hardSlap;
                     audioSource.Play();
+                    //_soundEffectsSetup.PlaySoundEffect("hardSlapReaction");
+                    soundEffectsAudioSource.clip = hardSlapReaction;
+                    soundEffectsAudioSource.Play();
+                    audienceAudioSource.clip = hardAudienceReaction;
+                    audienceAudioSource.Play();
+                    _dialogueSystem.playRandomArnold_Good();
 
                     // Activates ragdoll based on all joint's springs get set to 0
                     foreach (var joint in joints)
@@ -230,6 +285,7 @@ public class ToggleRagdoll : MonoBehaviour
             // Timer that counts down which triggers defeat if it reach 0
             if (!isDefeated)
             {
+                lightManager.MediumSceneLights_RedWhite = true;
                 currentTime -= Time.deltaTime;
                 armController.scoreText.text = Mathf.Round(currentTime).ToString();
             }
@@ -247,7 +303,7 @@ public class ToggleRagdoll : MonoBehaviour
             {
                 armController.scoreText.color = Color.yellow;
             }
-            else if (currentTime < 10 && !isDefeated)
+            else if (currentTime < 30 && !isDefeated)
             {
                 armController.scoreText.color = Color.green;
             }
@@ -357,7 +413,9 @@ public class ToggleRagdoll : MonoBehaviour
     private IEnumerator WaitThenRespawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
+        lightManager.MediumSceneLights_RedWhite = false;
+        StartCoroutine(lightManager.LerpToColour(Color.white, 2f));
+        StartCoroutine(lightManager.LerpToIntensity(3.2f, 2f));
         Respawn();
     }
 }
