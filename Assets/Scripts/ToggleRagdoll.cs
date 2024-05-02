@@ -72,12 +72,18 @@ public class ToggleRagdoll : MonoBehaviour
     public GameObject[] opponentLimbs;
     private Vector3[] opponentResetPositions;
     private Quaternion[] opponentResetRotations;
+    
+    private float fixedDeltaTime;
 
     private void Awake()
     {
         _soundEffectsSetup = FindObjectOfType<SoundEffectsSetup>();
         _dialogueSystem = FindObjectOfType<DialogueSystem>();
         _replayManager = FindObjectOfType<ReplayManager>();
+        
+        // Make a copy of the fixedDeltaTime, it defaults to 0.02f, but it can be changed in the editor
+        this.fixedDeltaTime = Time.fixedDeltaTime;
+        
     }
 
     void Start()
@@ -172,11 +178,16 @@ public class ToggleRagdoll : MonoBehaviour
                     armController.scoreText.color = Color.yellow;
                     audioSource.clip = mediumSlap;
                     audioSource.Play();
+                    
+                    StartCoroutine(SlowDownTime(0.45f, 5f, 7f));
+                    
                     soundEffectsAudioSource.clip = mediumSlapReaction;
                     soundEffectsAudioSource.Play();
                     audienceAudioSource.clip = mediumAudienceReaction;
                     audienceAudioSource.Play();
                     _dialogueSystem.playRandomArnold_Neutral();
+
+                    
 
                     for (int i = 1; i < 6; i++)
                     {
@@ -198,6 +209,9 @@ public class ToggleRagdoll : MonoBehaviour
                     armController.scoreText.color = Color.green;
                     audioSource.clip = hardSlap;
                     audioSource.Play();
+                    
+                    StartCoroutine(SlowDownTime(0.1f, 3f, 5f));
+                    
                     //_soundEffectsSetup.PlaySoundEffect("hardSlapReaction");
                     soundEffectsAudioSource.clip = hardSlapReaction;
                     soundEffectsAudioSource.Play();
@@ -315,6 +329,7 @@ public class ToggleRagdoll : MonoBehaviour
             rotation *= Quaternion.Euler(180, 0, 0);
             ConfigurableJointExtensions.SetTargetRotationLocal(pelvisJoint, rotation, pelvisStartRotation);
         }
+        
     }
 
     // Is called when the walking controls should activate
@@ -418,4 +433,26 @@ public class ToggleRagdoll : MonoBehaviour
         StartCoroutine(lightManager.LerpToIntensity(3.2f, 2f));
         Respawn();
     }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    IEnumerator SlowDownTime(float timeScale,float slowDownTime_Min, float slowDownTime_Max)      //----------------SLOW DOWN TIME-------------------//
+    {
+        Time.timeScale = timeScale;
+        // Adjust fixed delta time according to timescale
+        // The fixed delta time will now be 0.02 real-time seconds per frame
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;     //Apply the timeScale variable specified as an argument
+
+        float randomWaitTime = Random.Range(slowDownTime_Min, slowDownTime_Max);
+
+        randomWaitTime = randomWaitTime * timeScale;    //Scale the randomWaitTime correctly according to 
+        yield return new WaitForSeconds(randomWaitTime);
+        
+        Time.timeScale = 1f;        //Turn the scale time BACK to DEFAULT 1
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;     //Apply the new time scale
+    }
+    
 }
