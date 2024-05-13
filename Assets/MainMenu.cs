@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameButtonClicked()
     {
         // Reload the current scene
-        SceneManager.LoadScene("HeightTest 1");
+        SceneManager.LoadScene("NewMainScene(HeightTest 1)");
         Debug.Log("Reset button clicked");
     }
 
