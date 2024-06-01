@@ -127,6 +127,9 @@ public class ToggleRagdoll : MonoBehaviour
                 // Is set true until respawn function is called
                 isSlapped = true;
 
+                // Stops the countdown for slapping
+                armController.Slapping = false;
+
                 // Calculates Score
                 scoreMultiplier = armController.scoreMultiplier;
                 float score = collision.relativeVelocity.magnitude * scoreMultiplier;
@@ -439,11 +442,6 @@ public class ToggleRagdoll : MonoBehaviour
         StartCoroutine(lightManager.LerpToColour(Color.white, 2f));
         StartCoroutine(lightManager.LerpToIntensity(3.2f, 2f));
         Respawn();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     IEnumerator SlowDownTime(float timeScale,float slowDownTime_Min, float slowDownTime_Max)      //----------------SLOW DOWN TIME-------------------//

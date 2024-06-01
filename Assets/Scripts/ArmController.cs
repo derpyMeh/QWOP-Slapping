@@ -6,6 +6,7 @@ using System;
 public class ArmController : MonoBehaviour
 {
     [SerializeField] SlapAimAssist slapAimAssist;
+    [SerializeField] ToggleRagdoll oppenentToggleRagdoll;
     
     public Transform target;
     ConfigurableJoint cjoint;
@@ -31,11 +32,24 @@ public class ArmController : MonoBehaviour
     public float maxZ = 120f;
     public float minZ = -90f;
 
+    public bool Slapping;
+    float initialSlappingTime = 15;
+    float currentSlappingTime;
+
     // Start is called before the first frame update
     void Start()
     {
+        Slapping = true;
+        currentSlappingTime = initialSlappingTime;
+
         cjoint = GetComponent<ConfigurableJoint>();
         startRotation = transform.rotation;
+    }
+
+    private void OnEnable()
+    {
+        Slapping = true;
+        currentSlappingTime = initialSlappingTime;
     }
 
     // Update is called once per frame
@@ -61,6 +75,30 @@ public class ArmController : MonoBehaviour
 
         ColorChange();
 
+        if (Slapping)
+        {
+            // Timer for slapping or the round changes to the others turn.
+            currentSlappingTime -= Time.deltaTime;
+            scoreText.text = Mathf.Round(currentSlappingTime).ToString();
+
+            if (currentSlappingTime <= 0)
+            {
+                scoreText.text = "";
+                oppenentToggleRagdoll.Respawn();
+            }
+            else if (currentSlappingTime < 5)
+            {
+                scoreText.color = Color.red;
+            }
+            else if (currentSlappingTime < 10)
+            {
+                scoreText.color = Color.yellow;
+            }
+            else if (currentSlappingTime < 15)
+            {
+                scoreText.color = Color.green;
+            }
+        }
 
         if (QTESlide.value >= 100 && !hasExecuted)
         {

@@ -3630,6 +3630,10 @@ PrefabInstance:
       propertyPath: slapAimAssist
       value: 
       objectReference: {fileID: 509233612}
+    - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: oppenentToggleRagdoll
+      value: 
+      objectReference: {fileID: 1602813530}
     - target: {fileID: 8240241993401714326, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -38842,6 +38846,10 @@ PrefabInstance:
       propertyPath: slapAimAssist
       value: 
       objectReference: {fileID: 215780024}
+    - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: oppenentToggleRagdoll
+      value: 
+      objectReference: {fileID: 942567323}
     - target: {fileID: 8240241993401714326, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
