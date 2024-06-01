@@ -13116,6 +13116,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 31866677}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: opponentToggleRagdoll
+      value: 
+      objectReference: {fileID: 942567323}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: rigidbodies.Array.size
       value: 11
       objectReference: {fileID: 0}
@@ -38614,6 +38618,10 @@ PrefabInstance:
       propertyPath: limbs.Array.data[11]
       value: 
       objectReference: {fileID: 827013504}
+    - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
+      propertyPath: opponentToggleRagdoll
+      value: 
+      objectReference: {fileID: 1602813530}
     - target: {fileID: 7153114576515175054, guid: 90bbecc0dd8401547aa858b7263a06a9, type: 3}
       propertyPath: rigidbodies.Array.size
       value: 11

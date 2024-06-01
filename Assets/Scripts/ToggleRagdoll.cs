@@ -41,11 +41,12 @@ public class ToggleRagdoll : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] LightManager lightManager;
     [SerializeField] ReplayManager _replayManager;
+    [SerializeField] ToggleRagdoll opponentToggleRagdoll;
     
     float scoreMultiplier = 0;
     public Healthbar healthbar;
     public float maxHealth;
-    float currentHealth;
+    public float currentHealth;
     public GameObject defeatScreenUI;
 
     public ConfigurableJoint[] joints;
@@ -129,6 +130,12 @@ public class ToggleRagdoll : MonoBehaviour
                 // Calculates Score
                 scoreMultiplier = armController.scoreMultiplier;
                 float score = collision.relativeVelocity.magnitude * scoreMultiplier;
+
+                // Based on the missing health of the other player a small multiplier is applied to balance and create comeback potential
+                float missingHealthPercentage = (opponentToggleRagdoll.maxHealth - opponentToggleRagdoll.currentHealth) / opponentToggleRagdoll.maxHealth;
+                float balanceMultiplier = 1 + missingHealthPercentage;
+                score = score * balanceMultiplier;
+
                 score = Mathf.Round(score);
                 Debug.Log($"Score: {score}");
                 TakeDamage(score);
