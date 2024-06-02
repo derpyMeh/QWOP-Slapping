@@ -387,6 +387,11 @@ public class ToggleRagdoll : MonoBehaviour
     // Is called to reset all positions and start a new round where the players switch sides.
     public void Respawn()
     {
+        if (currentHealth <= 0)
+        {
+            Defeated();
+        }
+
         armController.ResetTargetRotation();
         armController.scoreMultiplier = 0;
         armController.scoreText.text = "";

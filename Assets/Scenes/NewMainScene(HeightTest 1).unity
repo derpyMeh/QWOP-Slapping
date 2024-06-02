@@ -3631,6 +3631,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 509233612}
     - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
+      propertyPath: controlsInversed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059906313678218996, guid: 7fa492255564c474c81f309cc97b8817, type: 3}
       propertyPath: oppenentToggleRagdoll
       value: 
       objectReference: {fileID: 1602813530}

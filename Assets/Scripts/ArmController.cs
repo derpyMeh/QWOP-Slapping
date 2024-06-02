@@ -5,6 +5,8 @@ using System;
 
 public class ArmController : MonoBehaviour
 {
+    public bool controlsInversed;
+    
     [SerializeField] SlapAimAssist slapAimAssist;
     [SerializeField] ToggleRagdoll oppenentToggleRagdoll;
     
@@ -60,18 +62,20 @@ public class ArmController : MonoBehaviour
 
         if (mouseXvalue != 0)
         {
-            //print("Mouse X movement: " + mouseXvalue);
-            currentZRotation += mouseXvalue;
+            if (controlsInversed)
+            {
+                currentZRotation -= mouseXvalue;
+            } else
+            {
+                currentZRotation += mouseXvalue;
+            }
         }
         if (mouseYvalue != 0)
         {
-            //print("Mouse Y movement: " + mouseYvalue);
             currentYRotation += mouseYvalue;
         }
 
-
         QTESlide.value = currentZRotation;
-        // QTESlide.value += mouseXvalue;
 
         ColorChange();
 
