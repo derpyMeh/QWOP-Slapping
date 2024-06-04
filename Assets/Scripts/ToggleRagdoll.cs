@@ -43,7 +43,7 @@ public class ToggleRagdoll : MonoBehaviour
     [SerializeField] ReplayManager _replayManager;
     [SerializeField] ToggleRagdoll opponentToggleRagdoll;
     
-    float scoreMultiplier = 0;
+    float scoreMultiplier = 1;
     public Healthbar healthbar;
     public float maxHealth;
     public float currentHealth;
@@ -139,6 +139,9 @@ public class ToggleRagdoll : MonoBehaviour
                 float balanceMultiplier = 1 + missingHealthPercentage;
                 score = score * balanceMultiplier;
 
+                float overallBalance = 0.5f;
+                score = score * overallBalance;
+
                 score = Mathf.Round(score);
                 Debug.Log($"Score: {score}");
                 TakeDamage(score);
@@ -189,7 +192,7 @@ public class ToggleRagdoll : MonoBehaviour
                     audioSource.clip = mediumSlap;
                     audioSource.Play();
                     
-                    StartCoroutine(SlowDownTime(0.45f, 5f, 7f));
+                    // StartCoroutine(SlowDownTime(0.45f, 5f, 7f));
                     
                     soundEffectsAudioSource.clip = mediumSlapReaction;
                     soundEffectsAudioSource.Play();
@@ -220,7 +223,7 @@ public class ToggleRagdoll : MonoBehaviour
                     audioSource.clip = hardSlap;
                     audioSource.Play();
                     
-                    StartCoroutine(SlowDownTime(0.1f, 3f, 5f));
+                    // StartCoroutine(SlowDownTime(0.1f, 3f, 5f));
                     
                     //_soundEffectsSetup.PlaySoundEffect("hardSlapReaction");
                     soundEffectsAudioSource.clip = hardSlapReaction;
