@@ -9,6 +9,8 @@ public class ResetCollider : MonoBehaviour
     public Transform camTransform;
     public Vector3 currentPos;
 
+    public GameObject walkToturialUI;
+
     void Start()
     {
       Vector3 currentPos = camTransform.position;
@@ -23,12 +25,23 @@ public class ResetCollider : MonoBehaviour
             p1ToggleRagdoll.Respawn();
             camTransform.position = currentPos;
 
+            if (p1ToggleRagdoll.firstWalk)
+            {
+                walkToturialUI.SetActive(false);
+                p1ToggleRagdoll.firstWalk = false;
+            }
         }
         if (other.gameObject.CompareTag("Player2") && p2ToggleRagdoll.Walking)
         {
             p2ToggleRagdoll.Walking = false;
             p2ToggleRagdoll.Respawn();
             camTransform.position = currentPos;
+
+            if (p2ToggleRagdoll.firstWalk)
+            {
+                walkToturialUI.SetActive(false);
+                p2ToggleRagdoll.firstWalk = false;
+            }
         }
     }
 }

@@ -65,6 +65,8 @@ public class ToggleRagdoll : MonoBehaviour
     public bool isSlapped = false;
     public bool Walking = false;
     bool isDefeated = false;
+    public bool firstSlap = true;
+    public bool firstWalk = true;
 
     [SerializeField] private GameObject WalkTarget;
     [SerializeField] private GameObject OpponentSlapper;
@@ -73,6 +75,9 @@ public class ToggleRagdoll : MonoBehaviour
     public GameObject[] opponentLimbs;
     private Vector3[] opponentResetPositions;
     private Quaternion[] opponentResetRotations;
+
+    public GameObject slapToturialUI;
+    public GameObject walkToturialUI;
     
     private float fixedDeltaTime;
 
@@ -117,6 +122,14 @@ public class ToggleRagdoll : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (firstSlap)
+        {
+            slapToturialUI.SetActive(true);
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "SlapHand" && collision.relativeVelocity.magnitude > 2)
@@ -129,6 +142,13 @@ public class ToggleRagdoll : MonoBehaviour
 
                 // Stops the countdown for slapping
                 armController.Slapping = false;
+
+                // Removes Toturial after first slap
+                if (firstSlap)
+                {
+                    slapToturialUI.SetActive(false);
+                    firstSlap = false;
+                }
 
                 // Calculates Score
                 scoreMultiplier = armController.scoreMultiplier;
@@ -358,6 +378,12 @@ public class ToggleRagdoll : MonoBehaviour
         {
             Walking = true;
             currentTime = initialTime;
+
+            // Starts Toturial when its the first time walking
+            if (firstWalk)
+            {
+                walkToturialUI.SetActive(true);
+            }
 
             foreach (var joint in joints)
             {

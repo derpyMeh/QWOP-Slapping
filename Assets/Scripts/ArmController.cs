@@ -38,6 +38,9 @@ public class ArmController : MonoBehaviour
     float initialSlappingTime = 15;
     float currentSlappingTime;
 
+    public GameObject multiplierGoalUI;
+    public GameObject multiplierResetUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,12 @@ public class ArmController : MonoBehaviour
     {
         Slapping = true;
         currentSlappingTime = initialSlappingTime;
+
+        if (oppenentToggleRagdoll.firstSlap)
+        {
+            multiplierGoalUI.SetActive(true);
+            multiplierResetUI.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -113,12 +122,26 @@ public class ArmController : MonoBehaviour
                     Debug.Log($"Score Multiplier: {scoreMultiplier}");
                     sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
+
+                    if (oppenentToggleRagdoll.firstSlap)
+                    {
+                        multiplierResetUI.SetActive(true);
+                        multiplierGoalUI.SetActive(false);
+                    }
+
                     break;
                 case 1:
                     scoreMultiplier = 2;
                     Debug.Log($"Score Multiplier: {scoreMultiplier}");
                     sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
+
+                    if (oppenentToggleRagdoll.firstSlap)
+                    {
+                        multiplierResetUI.SetActive(true);
+                        multiplierGoalUI.SetActive(false);
+                    }
+
                     break;
 
                 case 2:
@@ -126,6 +149,13 @@ public class ArmController : MonoBehaviour
                     Debug.Log($"Score Multiplier: {scoreMultiplier}");
                     sliderText.text = scoreMultiplier.ToString();
                     hasExecuted = true;
+
+                    if (oppenentToggleRagdoll.firstSlap)
+                    {
+                        multiplierResetUI.SetActive(true);
+                        multiplierGoalUI.SetActive(false);
+                    }
+
                     break;
                 default:
                     break;
@@ -138,6 +168,16 @@ public class ArmController : MonoBehaviour
         {
             hasExecuted = false;
             Debug.Log("Score Slider Reset");
+
+            if (multiplierResetUI.activeInHierarchy)
+            {
+                multiplierResetUI.SetActive(false);
+
+                if (scoreMultiplier < 3)
+                {
+                    multiplierGoalUI.SetActive(true);
+                }
+            }
             
             if (scoreMultiplier == 3 && !slapAimAssist.aimAssistEnabled)
             {
